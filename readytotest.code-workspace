@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "github.vscode-github-actions",
+      "GitHub.vscode-pull-request-github",
+      "ritwickdey.LiveServer",
+      "vscode-icons-team.vscode-icons",
+      "SonarSource.sonarlint-vscode",
+      "GitHub.copilot",
+    ],
+  },
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2, // Adjust tab size as per your preference
+    "editor.detectIndentation": false, // Disable indentation detection
+    "editor.insertSpaces": true, // Use spaces instead of tabs
+  },
+}

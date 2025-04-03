@@ -1,0 +1,33 @@
+{  
+    "loginCredentials": {
+    "usernameValid": "Admin",
+    "passwordValid": "admin123"
+    },
+
+    "formData": {
+      "buzzMessageText": "buzz-post-test-text",
+      "claimRemarksSectionText": "claim-remarks-test-text",
+      "expenseDatePicker": "2023-10-01",
+      "expenseAmount": "45.99",
+      "expenseNote": "expense-note-test-text",
+      "organizationName": "ACME Corporation",
+      "vacationDays": "14",
+      "leaveDateStart": "2024-11-01",
+      "leaveDateEnd": "2024-11-01",
+      "vacationDaysBalanceAfterLeaveRequest": "13.00",
+      "employeeFirstName": "Bob",
+      "employeeLastName": "Jones",
+      "employeeUsername": "bjones1"
+    },
+    
+    "_dataPlaceholder": {
+      "dataPlaceholder": "justAPlaceholder",
+      "dataPlaceholder2": "justAPlaceholder",
+      "dataPlaceholder3": "justAPlaceholder"
+    },
+    
+    "_defaultPlaceholder": "justAPlaceholder",
+    "_defaultPlaceholder2": "justAPlaceholder",
+    "_defaultPlaceholder3": "justAPlaceholder"
+    
+    }

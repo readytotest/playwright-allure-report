@@ -1,0 +1,15 @@
+{
+  "_comment": "If I remember right all these settings here, control the prettier extension, particularly automatic indentation.. I think? Been a while.",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "sonarlint.connectedMode.project": {
+    "connectionId": "readytotest",
+    "projectKey": "readytotest_readytotest.github.io"
+  }
+}

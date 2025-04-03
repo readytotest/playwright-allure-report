@@ -1,0 +1,11 @@
+#Adding things here I don't use often so I can reference
+#them when needed
+
+squash multiple commits into one
+--------------------------------
+git rebase --root -i
+i for editor mode
+fixup or squash each commit -- change each line to f or s except keep the first one with pick P
+escape to exit editor mode
+:x to save changes
+git push origin <branch-name> --force

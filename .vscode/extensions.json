@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"github.vscode-github-actions",
+		"GitHub.vscode-pull-request-github",
+		"ritwickdey.LiveServer",
+		"vscode-icons-team.vscode-icons",
+    "SonarSource.sonarlint-vscode",
+    "GitHub.copilot"
+	]
+}
