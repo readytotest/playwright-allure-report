@@ -16,6 +16,7 @@ This repository uses Allure reports to generate Playwright test results in a CI/
    - The main repository (`readytotest.github.io`).
    - The Playwright test repository (`test-playwright`), copied into the `playwright-tests` directory.
    - The Allure report repository (`playwright-allure-report`), copied into the `playwright-allure-report` directory.
+   - The YAML exists in the readytotest.github.io repo for all of this. [View it here.](https://github.com/readytotest/readytotest.github.io/blob/main/.github/workflows/playwright-mysite.yml)
    
 2. **Generate Allure Reports**: The Playwright test results are used to generate a new Allure report. Previous reports are included to maintain history.
 
