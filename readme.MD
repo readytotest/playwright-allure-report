@@ -1,6 +1,6 @@
 # Playwright Allure Report
 
-This repository handles the deployment of Allure reports from Playwright test results in a CI/CD pipeline. The process involves generating Allure reports from the test results, preserving previous reports for history, and publishing the new reports to GitHub Pages.
+This repository uses Allure reports to generate Playwright test results in a CI/CD pipeline. The process involves generating Allure reports from the test results, preserving previous reports for history, and deploys the new reports to GitHub Pages using actions-gh-pages.
 
 [View the Allure Report](https://readytotest.github.io/playwright-allure-report/)
 
