@@ -1,0 +1,246 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Test the weather alerts page >> weather page test run:0
+- Location: /home/runner/work/readytotest.github.io/readytotest.github.io/test-playwright/tests/weatherAlertPage.spec.ts:37:9
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toHaveText(expected)
+
+Locator: locator('weather-title')
+Expected string: "current watches, warnings, and advisories for nevada"
+Received string: ""
+Call log:
+  - expect.toHaveText with timeout 5000ms
+  - waiting for locator('weather-title')
+    9 × locator resolved to <weather-title></weather-title>
+      - unexpected value ""
+
+    at Object.verifyWeatherTitle (/home/runner/work/readytotest.github.io/readytotest.github.io/test-playwright/pages/weatherAlertPageObject.ts:9:49)
+    at /home/runner/work/readytotest.github.io/readytotest.github.io/test-playwright/tests/weatherAlertPage.spec.ts:72:7
+```
+
+# Page snapshot
+
+```yaml
+- text: "88\"\"Yb 888888 db 8888b. Yb dP 888888 dP\"Yb 888888 888888 .dP\"Y8 888888 88__dP 88__ dPYb 8I Yb YbdP 88 dP Yb 88 88__ `Ybo.\" 88 88\"Yb 88\"\" dP__Yb 8I dY 8P 88 Yb dP 88 88\"\" o.`Y8b 88 88 Yb 888888 dP\"\"\"\"Yb 8888Y\" dP 88 YbodP 88 888888 8bodP' 88 Software QA and Support ★ Automation ★ Manual Testing Current Date & Time (Pacific) ★"
+- link "2025/04/07, 16:03:58.843"
+- img
+- img
+- img
+- img
+- img
+- img
+- img
+- img
+- img
+- img
+- img
+- text: "------------------------------------------------------------------------"
+- link "sitemap"
+- img "usa flag"
+- link
+- img "nevada flag"
+- text: About ℹ️ Welcome to my personal homepage. It's like a peek into my garage workshop, where you get to see what I'm tinkering on and how I think about QA. And yep, I'm still maintaining this site. It's Alive and Kicking in 2025! Hop on for the ride, full of trial and error
+- link "."
+- text: "🧪🥼 Honestly, this is my creative outlet, disguised as a technical site. 😹 For a more personal look into my approach, check out my:"
+- link "water well lid project"
+- text: ","
+- link "testing skills"
+- text: ","
+- link "QA philosophy"
+- text: ", and"
+- link "work style"
+- text: .
+- img "Dog Running Gif"
+- text: Curious about the
+- link "design choice"
+- text: of this page? ------------------------------------------------------------------------ Ready to Test (QA) GitHub Profile 👤
+- link "https://github.com/readytotest"
+- link "Down to repo list ⤵"
+- text: "------------------------------------------------------------------------ UI Test Automation with Playwright"
+- img
+- superscript:
+  - text: This project uses
+  - link "Husky"
+  - text: ","
+  - link "ESLint"
+  - text: ","
+  - link "Prettier"
+  - text: ", and"
+  - link "lint-staged"
+  - text: to enforce code quality checks on staged files through a
+  - link "pre-commit hook"
+  - text: .
+- text: "----- CI/CD"
+- link:
+  - img
+- link "playwright-mysite.yml"
+- text: "|"
+- link "Actions workflow"
+- text: "| 📸"
+- link "look1"
+- text: "| 📸"
+- link "look2"
+- superscript:
+  - text: "This GitHub Actions workflow runs on every push or pull request to my main website repo. It checks out three repos: the main website repo, the Playwright test repo, and the Allure report repo. It installs dependencies, spins up a Node server, and runs the Playwright tests against a local environment in the runner with the changes from the push or PR. After the tests complete, the results are uploaded as an artifact to the GitHub Workflow run summary using the built-in HTML reporter. An Allure report is also generated, pushed to the dedicated Allure repo, and deployed to a GitHub Pages site, which you can access here ->"
+  - link "Playwright Allure Report"
+  - text: .
+- text: "----- Spec:"
+- link "homePage.spec.ts"
+- text: "| 📸"
+- link "look1"
+- text: "| 📸"
+- link "look2"
+- superscript: "Highlight: File download and verification"
+- text: "Spec:"
+- link "weatherAlertPage.spec.ts"
+- text: "| 🎥"
+- link "watch"
+- superscript: "Highlight: Exploring two browser sessions and clipboard operations"
+- text: "Spec:"
+- link "philosophyPage.spec.ts"
+- superscript: "Highlight: Directly using a page object versus initializing it first"
+- text: "Spec:"
+- link "testingSkillsPage.spec.ts"
+- superscript: "Highlight: Very simple script with no page objects or helper scripts"
+- text: "----- Page Object:"
+- link "homePageObject.ts"
+- text: "Page Object:"
+- link "weatherAlertPageObject.ts"
+- text: "Page Object:"
+- link "philosophyPageObject.ts"
+- superscript:
+  - text: Using function-based page objects as they are simpler and easier to maintain. Look in the test-playwright repo
+  - link "pages"
+  - text: directory for examples of class-based.
+- text: "----- Helper Function 1:"
+- link "verifyTextAndLink.ts"
+- text: "Helper Function 2:"
+- link "getHrefCopyToClipboard.ts"
+- text: "Helper Function 3:"
+- link "readClipboardContent.ts"
+- text: "Helper Function 4:"
+- link "navigation.ts"
+- text: "Helper Function 5:"
+- link "typeTodaysDate.ts"
+- text: "Helper Function 6:"
+- link "getTimeZoneInfo.ts"
+- text: "| 📸"
+- link "look1"
+- text: "| 📸"
+- link "look2"
+- text: "----- Test ID Generator:"
+- link "testIdGenerator.ts"
+- text: "Test Data:"
+- link "testData.ts"
+- text: "----- Feedback Widget Test Run: 📸"
+- link "look"
+- text: "| 🎥"
+- link "watch"
+- text: "----- Separate"
+- link "Playwright configs"
+- text: "for local + CI/CD environments. Playwright Config Local:"
+- link "playwright.config.ts"
+- text: "Playwright Config CI:"
+- link "playwright.actions.config.ts"
+- text: "------------------------------------------------------------------------ Start Local Server 🏭 Bash:"
+- link "start-server.sh"
+- text: "| 📸"
+- link "look1"
+- text: "| 📸"
+- link "look2"
+- text: "Node:"
+- link "server.js"
+- text: "------------------------------------------------------------------------ Cypress"
+- img
+- link "Click here"
+- text: to see Cypress UI/API/visual testing + Cypress Cloud ------------------------------------------------------------------------ Postman API Testing 📬
+- link "My profile and public workspace/collections"
+- text: "------------------------------------------------------------------------ National Weather Service API ⛈️🌡️❄️☔🌤 Click Here -->"
+- link "View weather alerts on my page"
+- text: <-- Click Here ------------------------------------------------------------------------ Most Recent Earthquake via 📳
+- link "USGS Realtime GeoJSON Feed"
+- text: "Source File:"
+- link "earthQuake.js"
+- text: "Place: 3 km NNE of The Geysers, CA Magnitude: 0.25 Latitude: 38.8030014038086 Longitude: -122.75366973877 Depth: 0.56 km Time: 4/7/2025, 3:43:00 PM Pacific URL: 📍"
+- link "View on map"
+- text: "------------------------------------------------------------------------ Code Quality and Site Monitoring ⚠️"
+- link "View my SonarQube Cloud project"
+- link "SonarCloud Logo":
+  - img "SonarCloud Logo"
+- link "SonarCloud Security":
+  - img "SonarCloud Security"
+- link "SonarCloud Maintainability":
+  - img "SonarCloud Maintainability"
+- link "SonarCloud Badge Reliability":
+  - img "SonarCloud Badge Reliability"
+- link "SonarCloud Badge Quality Gate":
+  - img "SonarCloud Badge Quality Gate"
+- link "Sentry Logo":
+  - img "Sentry Logo"
+- text: "------------------------------------------------------------------------ Slack Integration 🪛 Slack integration with Sentry 📸"
+- link "look"
+- text: and Cypress Cloud 📸
+- link "look"
+- text: "------------------------------------------------------------------------ Tinkering with the HTML <video></video> tag 🚘📹 * On desktop, hover your mouse over over the video to toggle opacity. * On mobile, just tap on or outside of the video to toggle opacity. Your browser does not support the video tag. ------------------------------------------------------------------------ Set frequency of JS alert with localStorage"
+- link "alertPopUp.js"
+- text: 🛎️ ------------------------------------------------------------------------ View my curated list of
+- link "helpful tools and resources"
+- text: 🛠️ ------------------------------------------------------------------------
+- link "tinker.js"
+- text: JavaScript playground 🎡 ------------------------------------------------------------------------ Repository Last Commit 💾
+- link "readytotest"
+- text: "Topics: quality-assurance Timestamp: 4/7/2025, 1:05:40 PM Pacific git commit -m: \"chore: squash all commits into one! Update README.md\""
+- link "playwright-allure-report"
+- text: "Topics: playwright,test-automation Timestamp: 4/7/2025, 1:51:15 PM Pacific git commit -m: \"deploy: readytotest/readytotest.github.io@791ec6d80f44d09df0784ecb937dce5e23febc6c\""
+- link "readytotest.github.io"
+- text: "Topics: blog,cicd,cypress,github-actions,qa,test-automation Timestamp: 4/7/2025, 4:03:15 PM Pacific git commit -m: \"Merge pull request #144 from readytotest/dependabot/npm_and_yarn/html-eslint/eslint-plugin-0.38.1 chore(deps-dev): bump @html-eslint/eslint-plugin from 0.37.0 to 0.38.1\""
+- link "test-playwright"
+- text: "Topics: automated-testing,playwright,typescript Timestamp: 4/6/2025, 11:14:26 PM Pacific git commit -m: \"Merge pull request #211 from readytotest/dependabot/npm_and_yarn/typescript-5.8.3 chore(deps-dev): bump typescript from 5.8.2 to 5.8.3\" ----- Source File:"
+- link "repoLastCommitInfo.js"
+- text: "------------------------------------------------------------------------"
+- link "Sign/View my guestbook"
+- text: "------------------------------------------------------------------------"
+- img "QA 88x31 Button"
+- img "Free Scripts 88x31 Button"
+- img "Learn HTML 88x31 Button"
+- img "JavaScript 88x31 Button"
+- img "Web Interoperability 88x31 Button"
+- text: "Feel free to use and explore the scripts. This site is intended for educational purposes, not only for my learning journey, but yours too! Thanks for stopping by! You are visitor:"
+- img "Website Hit Counter"
+- text: "------------------------------------------------------------------------"
+- link "Top ⇧"
+- button "Let's connect!":
+  - img
+  - text: Let's connect!
+```
+
+# Test source
+
+```ts
+   1 | import { expect, Page } from "@playwright/test";
+   2 |
+   3 | export const weatherAlertPageObject = (page: Page) => {
+   4 |   const verifyWeatherTitle = async (title: string, options: { ignoreCase: boolean }) => {
+   5 |     // I had to put a 10 second fixed wait here due to the Weather API lag (not just in Playwright but using CURL as well)
+   6 |     // Lately their API is slow to respond....
+   7 |     // And assertion was failing because the title was not being displayed
+   8 |     await page.waitForTimeout(10000);
+>  9 |     await expect(page.locator("weather-title")).toHaveText(title, options);
+     |                                                 ^ Error: Timed out 5000ms waiting for expect(locator).toHaveText(expected)
+  10 |   };
+  11 |
+  12 |   return {
+  13 |     verifyWeatherTitle,
+  14 |   };
+  15 | };
+  16 |
+```
