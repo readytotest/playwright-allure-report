@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","11041","weather page test run:0","chromium","Thu Apr 10 22:53:27 GMT 2025","passed","Thu Apr 10 22:53:38 GMT 2025","Test the weather alerts page","weatherAlertPage.spec.ts","",""
-"","3869","home page test run:0","chromium","Thu Apr 10 22:53:21 GMT 2025","passed","Thu Apr 10 22:53:25 GMT 2025","Test the index htm page","homePage.spec.ts","",""
-"","1131","testing skills page","chromium","Thu Apr 10 22:53:26 GMT 2025","passed","Thu Apr 10 22:53:27 GMT 2025","","testingSkillsPage.spec.ts","",""
-"","1105","philosophy page test","chromium","Thu Apr 10 22:53:26 GMT 2025","passed","Thu Apr 10 22:53:27 GMT 2025","","philosophyPage.spec.ts","",""
-"","4009","feedback widget test run:0","chromium","Thu Apr 10 22:53:22 GMT 2025","passed","Thu Apr 10 22:53:26 GMT 2025","Test the index htm page","homePage.spec.ts","",""
