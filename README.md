@@ -16,3 +16,7 @@ The setup is managed through the YAML file `playwright-mysite.yml`, located in t
 ## Where the Report Files Live
 
 If you're wondering where the report files live in this repository, they are located in the `live-reports` branch. You can view them on the [live-reports branch](https://github.com/readytotest/playwright-allure-report/tree/live-reports).
+
+## The Problem
+
+Even though the marketplace action is set to delete older files, Git still tracks deleted files, which remain in the repository's history and contribute to its overall size. The GitHub repository size limit is around 5GB, so this is a problem. I'm working on figuring out how to reduce the repository size using history rewriting tools like git filter-repo, though I'm facing some challenges. Worst-case scenario.. I'll stop pushing reports from CI/CD if the repo gets too close to the limit.
