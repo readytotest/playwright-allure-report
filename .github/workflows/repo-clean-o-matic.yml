@@ -32,11 +32,11 @@ jobs:
 
       - name: Clean image files from repository history
         run: |
-          git filter-repo --path-glob '*.{jpg,jpeg,png,gif,webm}' --invert-paths --refs --debug
+          git filter-repo --path-glob '*.{jpg,jpeg,png,gif,webm}' --invert-paths --refs 'refs/heads/*' --debug
 
       - name: Perform garbage collection to clean up repository
         run: |
-          git gc --prune=now --aggressive
+          git gc --prune=now --aggressive git
 
       - name: Re-add remote origin
         run: |
