@@ -1,0 +1,59 @@
+# Lets see if we can get this keep this repo size under the size limit
+# The issue is these Allure reports take up too much space, even with them being deleted on each run
+# That's because git still tracks deleted files, so we need to rewrite the history to remove them for good
+# We need to test this out and see if it works, if there's any issues, or if we need further troubleshooting
+
+name: Clean Repo History
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"  # Runs every Sunday at midnight
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install git-filter-repo
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          sudo pip3 install git-filter-repo
+
+      - name: Set remote URL with GitHub Token
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
+      - name: Clean image files from repository history
+        run: |
+          git filter-repo --path-glob '*.{jpg,jpeg,png,gif,webm}' --invert-paths --debug
+
+      - name: Perform garbage collection to clean up repository
+        run: |
+          git gc --prune=now --aggressive
+
+      - name: Re-add remote origin
+        run: |
+          git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
+      - name: Push changes back to GitHub
+        run: |
+          git push origin --force --all
+          git push origin --force --tags
+          git push origin --force refs/replace/*
+
+      - name: Check Allure repository size
+        continue-on-error: true # Want the workflow to continue and not flag as failed (even if this step fails)
+        run: |
+          size=$(curl -s "https://api.github.com/repos/readytotest/playwright-allure-report" | jq -r '.size')
+          size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
+          echo "playwright-allure-report repo size: ${size_gb} GB"
+       
+
+
