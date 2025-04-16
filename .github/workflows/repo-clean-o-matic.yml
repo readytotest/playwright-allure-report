@@ -38,10 +38,6 @@ jobs:
         run: |
            git gc --prune=now --aggressive
 
-      - name: Re-add remote origin
-        run: |
-          git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-
       - name: Push changes back to GitHub
         run: |
           git push origin --force --all
