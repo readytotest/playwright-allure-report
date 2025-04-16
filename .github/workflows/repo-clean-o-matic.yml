@@ -34,7 +34,7 @@ jobs:
 
       - name: Clean image files from repository history
         run: |
-          git filter-repo --path-glob '**/*.{jpg,jpeg,png,gif,webm}' --invert-paths --refs 'refs/heads/*' --refs 'refs/tags/*' --debug
+          git filter-repo --path-glob '**/*.{png,webm}' --invert-paths --refs 'refs/heads/*' --refs 'refs/tags/*' --debug
 
       - name: Perform garbage collection to clean up repository
         run: |
