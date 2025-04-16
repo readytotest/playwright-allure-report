@@ -38,6 +38,7 @@ jobs:
 
       - name: Perform garbage collection to clean up repository
         run: |
+           git reflog expire --expire=now --all
            git gc --prune=now --aggressive
 
       - name: Push changes back to GitHub
