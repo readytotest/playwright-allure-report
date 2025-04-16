@@ -40,6 +40,10 @@ jobs:
         run: |
            git reflog expire --expire=now --all
            git gc --prune=now --aggressive
+           
+      - name: Repack all objects
+        run: |
+          git repack -a -d -f --depth=250 --window=250
 
       - name: Push changes back to GitHub
         run: |
