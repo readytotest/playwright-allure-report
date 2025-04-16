@@ -32,9 +32,9 @@ jobs:
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
-      - name: Clean image files from repository history
+      - name: Clean video files from repository history
         run: |
-          git filter-repo --path-glob '**/*.{png,webm}' --invert-paths --refs 'refs/heads/*' --refs 'refs/tags/*' --debug
+          git filter-repo --path-glob '**/*.webm' --invert-paths --refs 'refs/heads/*' --refs 'refs/tags/*' --force
 
       - name: Perform garbage collection to clean up repository
         run: |
