@@ -36,7 +36,7 @@ jobs:
 
       - name: Perform garbage collection to clean up repository
         run: |
-          git gc --prune=now --aggressive git
+           git gc --prune=now --aggressive
 
       - name: Re-add remote origin
         run: |
