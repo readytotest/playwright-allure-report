@@ -2,11 +2,11 @@
 
 This repository publishes Playwright test reports to a GitHub Pages site after every CI/CD run. The reports are generated using Allure and deployed with the `actions-gh-pages` GitHub Action.
 
-> ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life. 
+> ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life. I burned through 24 hours getting this to work as good as I can.. lol, but I enjoyed it!
 
 #### What I Learned the Hard Way
-- Allure history links break in subdirectories
-- GitHub Pages will serve your main site when it doesn't know what else to do
+- Allure history links break if the report isn't served from your main..
+- ..username.github.io repo. The links will point to your homepage instead
 - You can't easily override Allure's base path via the Marketplace Action
 - BFG Repo-Cleaner is a lifesaver when your repo grows to 1GB and will get even bigger
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
@@ -32,9 +32,16 @@ The repository grew in size due to large files (`.webm` and `.png`) being tracke
 
 ## ⚠️ Known Issue with History Links
 
-Allure's history links use relative paths (like `#testresult/abcd123`). When hosted in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links incorrectly point to the root of the domain. So instead of getting the test result, you just see your website.
+Allure's history links use relative paths (like `#testresult/abcd123`). If you're hosting the report in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links break and take you to the root of your main site instead of the test result.
 
-You'd expect a 404, but since the link uses a `#`, the browser doesn't request a new page. It treats it like an anchor on the homepage, and since that anchor doesn't exist, nothing happens. It just sits there showing the root page.
+You'd expect a 404, but that's not what happens. Since it's a hash (`#`), the browser doesn't actually try to go to an unknown directory. It treats it like an `id` (jump link), so it just goes to your homepage.
+
+This only bites you if you're hosting your personal website on your main user repo and trying to serve something like an Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
+
+- **User or Organization Site**: This is a site served from a repo named `username.github.io` (e.g., `https://username.github.io`). Usually for personal or org websites.
+- **Project Site**: This is anything else. The URL includes the repo name as a subdirectory (e.g., `https://username.github.io/project-name/`).
+
+If you're in the second setup, where your main site lives in `username.github.io` and your report is in a separate project repo, then Allure's history links will break because they assume everything's served from root.
 
 
 #### Why a Subdirectory?
@@ -44,10 +51,6 @@ I'm hosting the report in a subdirectory because my **main repo** (`readytotest.
 ### GitHub Marketplace Action Limitation
 
 Unfortunately, I couldn't find any documentation on how to account for this issue in the **GitHub Marketplace Action** for Allure. So unless you're prepared to dig deep and write custom scripts to handle this manually (which I'm not doing 😂), this problem with history links in subdirectories is just something you'll have to work around. 
-
-I think in the real world, most people probably won't encounter this issue unless they have a personal website hosted off their **main repo**. Here's a quick rundown of how GitHub Pages works to help explain:
-
-- **User or Organization Site**: This is a site served from a repository named `username.github.io` (e.g., `https://username.github.io`). It's typically used for personal or organization websites.
   
 - **Project Site**: This is a site hosted from any other repository, and the URL will include the repository name as a subdirectory (e.g., `https://username.github.io/project-name/`).
 
