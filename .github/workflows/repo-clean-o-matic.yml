@@ -32,6 +32,12 @@ jobs:
         run: |
           cd repo
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+        
+      - name: Create and checkout temporary branch
+        run: |
+          cd repo
+          git checkout --orphan temp-branch  # Create a temporary branch (without any history)
+          git reset --hard  # Reset everything to match the current state
 
       - name: Clean video files from repository history
         run: |
