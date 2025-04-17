@@ -21,8 +21,9 @@ jobs:
         continue-on-error: true
         run: |
           size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
+          size_mb=$(echo "scale=2; $size / 1024" | bc)
           size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
-          echo "Repo size before cleanup: ${size_gb} GB"
+          echo "Repo size before cleanup: ${size_mb} MB (or ${size_gb} GB if you prefer)"
 
       - name: Install BFG Repo-Cleaner
         run: |
@@ -47,5 +48,6 @@ jobs:
         continue-on-error: true
         run: |
           size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
+          size_mb=$(echo "scale=2; $size / 1024" | bc)
           size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
-          echo "Repo size after cleanup: ${size_gb} GB"
+          echo "Repo size after cleanup: ${size_mb} MB (or ${size_gb} GB if you prefer)"
