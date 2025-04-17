@@ -21,9 +21,12 @@ If you're wondering where the report files live in this repository, they are loc
 
 The repository grew in size due to large files (`.webm` and `.png`) being tracked by Git, _even after deletion_. This led to the repository growing to 1GB. I've got [repo-clean-o-matic.yml](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
 
-## Issue with History Links on GitHub Pages
+## ⚠️ Known Issue with History Links
 
-Allure's **history** links use **relative paths** (like `/testresult/abcd1234`). When the report is hosted in a **subdirectory** (e.g., `https://yourusername.github.io/playwright-allure-report/`), those links try to go to the root and instead of getting the test results, you end up seeing your **website** because that's what GitHub serves by default.
+Allure's history links use relative paths (like `#testresult/abcd123`). When hosted in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links incorrectly point to the root of the domain. So instead of getting the test result, you just see your website.
+
+You'd expect a 404, but since the link uses a `#`, the browser doesn't request a new page. It treats it like an anchor on the homepage, and since that anchor doesn't exist, nothing happens. It just sits there showing the root page.
+
 
 #### Why a Subdirectory?
 
