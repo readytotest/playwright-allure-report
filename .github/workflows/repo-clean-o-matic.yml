@@ -17,10 +17,10 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # This fetches the entire history
+      - name: Manually clone the repo
+        run: |
+          git clone --mirror https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git repo
+          cd repo
 
       - name: Install git-filter-repo
         run: |
