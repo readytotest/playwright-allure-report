@@ -35,7 +35,7 @@ jobs:
 
       - name: Run BFG to delete all *.webm files
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm'
+          java -jar /tmp/bfg.jar --delete-files '**/*.webm'
 
       - name: Run git garbage collection
         run: |
