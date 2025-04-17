@@ -51,10 +51,6 @@ I'm hosting the report in a subdirectory because my **main repo** (`readytotest.
 ### GitHub Marketplace Action Limitation
 
 Unfortunately, I couldn't find any documentation on how to account for this issue in the **GitHub Marketplace Action** for Allure. So unless you're prepared to dig deep and write custom scripts to handle this manually (which I'm not doing 😂), this problem with history links in subdirectories is just something you'll have to work around. 
-  
-- **Project Site**: This is a site hosted from any other repository, and the URL will include the repository name as a subdirectory (e.g., `https://username.github.io/project-name/`).
-
-If you're using a **user site** for your personal website and need to host something else like the Allure report in a **subdirectory** (using a separate repo), you'll run into this issue with broken history links since the links assume the report is being served from the root, not a subdirectory.
 
 ## My Thoughts
 
