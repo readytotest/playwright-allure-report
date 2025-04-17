@@ -44,17 +44,11 @@ jobs:
            git reflog expire --expire=now --all
            git gc --prune=now --aggressive
            
-      - name: Repack all objects
-        run: |
-          cd repo
-          git repack -a -d -f --depth=250 --window=250
-
       - name: Push changes back to GitHub
         run: |
           cd repo
           git push origin --force --all
           git push origin --force --tags
-          git push origin --force refs/replace/*
 
       - name: Check Allure repository size
         continue-on-error: true # Want the workflow to continue and not flag as failed (even if this step fails)
