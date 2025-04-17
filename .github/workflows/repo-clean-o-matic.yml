@@ -37,6 +37,8 @@ jobs:
         run: |
           git reflog expire --expire=now --all
           git gc --prune=now --aggressive
+          git repack -a -d -f
+          git prune-packed
 
       - name: Force push all cleaned branches and tags
         run: |
