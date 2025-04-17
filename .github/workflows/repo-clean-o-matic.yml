@@ -55,8 +55,9 @@ jobs:
           echo "Repo size after cleanup: ${size_mb} MB (or ${size_gb} GB if you prefer)"
 
       - name: Upload BFG cleanup report files as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: bfg-cleanup-report
           path: /home/runner/work/playwright-allure-report/playwright-allure-report.bfg-report/*
+          if-no-files-found: warn
           retention-days: 7
