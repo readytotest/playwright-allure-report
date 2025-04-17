@@ -45,9 +45,7 @@ jobs:
         run: |
           cd repo.git
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git push --force origin main
-          git push --force origin live-reports
-          git push --force --tags
+          git push
 
       - name: Check final repo size on GitHub
         continue-on-error: true
