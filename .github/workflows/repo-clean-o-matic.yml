@@ -3,7 +3,7 @@ name: Clean Repo History (*.webm & *.png)
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"  # Every Sunday at midnight
+    - cron: "0 0 * * 0"  # Every Sunday at midnight UTC
 
 jobs:
   cleanup:
