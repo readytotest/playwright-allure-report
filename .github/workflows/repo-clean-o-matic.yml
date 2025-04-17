@@ -30,6 +30,7 @@ jobs:
 
       - name: Set remote URL with GitHub Token
         run: |
+          cd repo
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
       - name: Clean video files from repository history
