@@ -20,3 +20,34 @@ If you're wondering where the report files live in this repository, they are loc
 ## Repo Size - Problem & Solution
 
 The repository grew in size due to large files (`.webm` and `.png`) being tracked by Git, _even after deletion_. This led to the repository growing to 1GB. I've got [repo-clean-o-matic.yml](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
+
+### Issue with History Links on GitHub Pages
+
+Allure's **history** links use **relative paths** (like `/testresult/abcd1234`). When the report is hosted in a **subdirectory** (e.g., `https://yourusername.github.io/playwright-allure-report/`), those links try to go to the root and instead of getting the test results, you end up seeing your **website** because that's what GitHub serves by default.
+
+#### Why a Subdirectory?
+
+I'm hosting the report in a subdirectory because my **main repo** (`readytotest.github.io`) is where my personal website lives. I had to put the report in a **different repo** and serve it from a subdirectory, which is why this issue happens.
+
+### GitHub Marketplace Action Limitation
+
+Unfortunately, I couldn't find any documentation on how to account for this issue in the **GitHub Marketplace Action** for Allure. So unless you're prepared to dig deep and write custom scripts to handle this manually (which I'm not doing 😂), this problem with history links in subdirectories is just something you'll have to work around. 
+
+I think in the real world, most people probably won't encounter this issue unless they have a personal website hosted off their **main repo**. Here's a quick rundown of how GitHub Pages works to help explain:
+
+- **User or Organization Site**: This is a site served from a repository named `username.github.io` (e.g., `https://username.github.io`). It's typically used for personal or organization websites.
+  
+- **Project Site**: This is a site hosted from any other repository, and the URL will include the repository name as a subdirectory (e.g., `https://username.github.io/project-name/`).
+
+If you're using a **user site** for your personal website and need to host something else like the Allure report in a **subdirectory** (using a separate repo), you'll run into this issue with broken history links since the links assume the report is being served from the root, not a subdirectory.
+
+## My Thoughts
+
+This whole investigation, setup, configuration, and troubleshooting with Allure probably took about 24+ hours of my time. Well, to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
+
+After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
+
+I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. In the end, the Playwright HTML reporter just feels simpler, and for most CI/CD setups, that's probably all you really need anyway.
+
+But hey, I learned a lot, and that's what matters, right? 😅
+
