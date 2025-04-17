@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Manually clone the repo
         run: |
-          git clone --mirror https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git repo
+          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git repo
           cd repo
 
       - name: Install git-filter-repo
