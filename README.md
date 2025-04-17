@@ -2,6 +2,15 @@
 
 This repository publishes Playwright test reports to a GitHub Pages site after every CI/CD run. The reports are generated using Allure and deployed with the `actions-gh-pages` GitHub Action.
 
+> ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life.
+
+#### What I Learned the Hard Way
+- Allure history links break in subdirectories
+- GitHub Pages will serve your main site when it doesn't know what else to do
+- You can't easily override Allure's base path via the Marketplace Action
+- BFG Repo-Cleaner is a lifesaver when your repo grows to 1GB and will get even bigger
+- Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
+
 ## Setup
 
 The setup is managed through the YAML file `playwright-mysite.yml`, located in the my main website repository. You can view the YAML configuration file directly [here](https://github.com/readytotest/readytotest.github.io/blob/main/.github/workflows/playwright-mysite.yml).
