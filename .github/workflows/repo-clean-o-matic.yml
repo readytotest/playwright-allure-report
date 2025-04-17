@@ -30,7 +30,8 @@ jobs:
 
       - name: Run BFG to delete all .webm and .png files
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm' --delete-files '*.png' --no-blob-protection my-repo.git
+          java -jar /tmp/bfg.jar --delete-files '*.webm' --no-blob-protection my-repo.git
+          java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection my-repo.git
 
       - name: Run git garbage collection
         run: |
