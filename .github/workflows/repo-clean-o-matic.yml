@@ -12,10 +12,10 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - name: Checkout full repo history
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
+      - name: Clone mirror of the repo
+        run: |
+          git clone --mirror https://github.com/${{ github.repository }}.git repo.git
+
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
@@ -31,10 +31,11 @@ jobs:
 
       - name: Run BFG to delete all .webm and .png files
         run: |
-          java -jar /tmp/bfg.jar --delete-files '{*.webm,*.png}'
+          java -jar /tmp/bfg.jar --delete-files '{*.webm,*.png}' repo.git
 
-      - name: Run git garbage collection
+      - name: Git cleanup
         run: |
+          cd repo.git
           git reflog expire --expire=now --all
           git gc --prune=now --aggressive
           git repack -a -d -f
@@ -42,6 +43,7 @@ jobs:
 
       - name: Force push all cleaned branches and tags
         run: |
+          cd repo.git
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git push origin --force --all
           git push origin --force --tags
