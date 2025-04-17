@@ -33,9 +33,10 @@ jobs:
         run: |
           curl -L -o /tmp/bfg-1.15.0.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      - name: Remove video files with BFG
+      - name: Run BFG to delete all *.webm files
         run: |
-          java -jar /tmp/bfg-1.15.0.jar --delete-files '*.webm' --no-blob-protection
+          cd repo
+          java -jar ../bfg.jar --delete-files '*.webm'
 
       - name: Run git garbage collection
         run: |
