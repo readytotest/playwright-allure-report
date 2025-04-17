@@ -35,19 +35,23 @@ jobs:
 
       - name: Clean video files from repository history
         run: |
+          cd repo
           git filter-repo --path-glob '*.webp' --invert-paths --refs 'refs/heads/*' --refs 'refs/tags/*' --force
 
       - name: Perform garbage collection to clean up repository
         run: |
+           cd repo
            git reflog expire --expire=now --all
            git gc --prune=now --aggressive
            
       - name: Repack all objects
         run: |
+          cd repo
           git repack -a -d -f --depth=250 --window=250
 
       - name: Push changes back to GitHub
         run: |
+          cd repo
           git push origin --force --all
           git push origin --force --tags
           git push origin --force refs/replace/*
