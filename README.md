@@ -2,7 +2,7 @@
 
 This repository publishes Playwright test reports to a GitHub Pages site after every CI/CD run. The reports are generated using Allure and deployed with the `actions-gh-pages` GitHub Action.
 
-> ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life.
+> ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life. 
 
 #### What I Learned the Hard Way
 - Allure history links break in subdirectories
@@ -55,7 +55,9 @@ If you're using a **user site** for your personal website and need to host somet
 
 ## My Thoughts
 
-This whole investigation, setup, configuration, and troubleshooting with Allure probably took about 24+ hours of my time. Well, to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
+This whole investigation, setup, configuration, and troubleshooting with Allure probably took about 24+ hours of my time. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
+
+I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why, even if it takes hours and way too many browser tabs.
 
 After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
 
