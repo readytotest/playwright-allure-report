@@ -19,9 +19,4 @@ If you're wondering where the report files live in this repository, they are loc
 
 ## Repo Size - Problem & Solution
 
-The repository grew in size due to large files (webm and png) being tracked by Git, even after deletion. This led to the repository growing to 1GB. To address this, I used **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. I then performed **Git garbage collection** and **force-pushed** the cleaned history, reducing the repository size significantly.
-
-This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC. 
-
-For the full cleanup workflow, refer to the [repo-clean-o-matic.yml](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml).
-
+The repository grew in size due to large files (`.webm` and `.png`) being tracked by Git, even after deletion. This led to the repository growing to 1GB. I've got [repo-clean-o-matic.yml](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
