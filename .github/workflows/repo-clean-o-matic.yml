@@ -1,4 +1,4 @@
-name: Clean Repo *.webm/*.png History
+name: Clean Repo History (*.webm & *.png)
 
 on:
   workflow_dispatch:
