@@ -8,7 +8,7 @@ name: Clean Repo History
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"  # Runs every Sunday at midnight
+    - cron: "0 0 * * 0"  # Every Sunday at midnight
 
 jobs:
   cleanup:
@@ -20,23 +20,22 @@ jobs:
       - name: Checkout full repo history
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Make sure we get all history, not just latest commit
+          fetch-depth: 0 
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
         run: |
           size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
           size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
-          echo "Repo size after cleanup: ${size_gb} GB"
+          echo "Repo size before cleanup: ${size_gb} GB"
 
       - name: Install BFG Repo-Cleaner
         run: |
-          curl -L -o /tmp/bfg-1.15.0.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
+          curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
       - name: Run BFG to delete all *.webm files
         run: |
-          cd repo
-          java -jar ../bfg.jar --delete-files '*.webm'
+          java -jar /tmp/bfg.jar --delete-files '*.webm'
 
       - name: Run git garbage collection
         run: |
@@ -55,5 +54,3 @@ jobs:
           size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
           size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
           echo "Repo size after cleanup: ${size_gb} GB"
-
-
