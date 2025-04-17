@@ -1,4 +1,4 @@
-name: Clean Repo History (*.webm & *.png)
+name: The Repo Clean-O-Matic (removes *.webm & *.png)
 
 on:
   workflow_dispatch:
