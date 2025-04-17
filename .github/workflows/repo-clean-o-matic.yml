@@ -20,7 +20,7 @@ jobs:
       - name: Manually clone the repo
         run: |
           git clone --mirror https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git repo
-          cd $(basename "${{ github.repository }}")
+          cd repo
 
       - name: Install git-filter-repo
         run: |
