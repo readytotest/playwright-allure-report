@@ -19,7 +19,7 @@ If you're wondering where the report files live in this repository, they are loc
 
 ## Repo Size - Problem & Solution
 
-The repository grew in size due to large files (e.g., `.webm` video files from Allure reports) being tracked by Git, even after deletion. This led to the repository growing to 1GB. To address this, I used **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits. I then performed **Git garbage collection** and **force-pushed** the cleaned history, reducing the repository size significantly.
+The repository grew in size due to large files (e.g., `.webm` video files from Allure reports) being tracked by Git, even after deletion. This led to the repository growing to 1GB. To address this, I used **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. I then performed **Git garbage collection** and **force-pushed** the cleaned history, reducing the repository size significantly.
 
 This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC. 
 
