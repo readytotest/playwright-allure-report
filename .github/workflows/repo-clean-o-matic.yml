@@ -46,14 +46,6 @@ jobs:
           git push origin --force --all
           git push origin --force --tags
 
-      - name: Check final repo size on GitHub
-        continue-on-error: true
-        run: |
-          size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
-          size_mb=$(echo "scale=2; $size / 1024" | bc)
-          size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
-          echo "Repo size after cleanup: ${size_mb} MB (or ${size_gb} GB if you prefer)"
-
       - name: Upload BFG cleanup report files as artifact
         uses: actions/upload-artifact@v4.6.2
         with:
@@ -61,3 +53,11 @@ jobs:
           path: /home/runner/work/playwright-allure-report/playwright-allure-report.bfg-report/*
           if-no-files-found: warn
           retention-days: 7
+
+      - name: Final note about repo size
+        run: |
+          echo "Note: GitHub repo size may take a while to update after cleanup."
+          echo "You can manually check it later with:"
+          echo "  curl -s https://api.github.com/repos/${{ github.repository }} | jq -r '.size'"
+          echo "That'll return the size in KB. Divide by 1024 to get MB."
+        
