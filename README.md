@@ -61,7 +61,7 @@ I'm not the type to throw my hands up when things get tricky. If something's bro
 
 After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
 
-I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. In the end, the Playwright HTML reporter just feels simpler, and for most CI/CD setups, that's probably all you really need anyway.
+I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. In the end, the Playwright HTML reporter just feels simpler, and for most CI/CD setups, that's probably all you really need anyway. All you need to do is upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow run summary page.
 
 But hey, I learned a lot, and that's what matters, right? 😅
 
