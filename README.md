@@ -36,7 +36,14 @@ The repository grew in size due to large files (`.webm` and `.png`) being tracke
 
 Allure's history links use relative paths (like `#testresult/abcd123`). If you're hosting the report in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links break and take you to the root of your main site instead of the test result.
 
-You'd expect a 404, but that's not what happens. Since it's a hash (`#`), the browser doesn't actually try to go to an unknown directory. It treats it like an `id` (jump link), so it just goes to your homepage.
+You'd expect a 404, but that's not what happens. Since it's a hash (#), the browser doesn't treat it like a real path. It just sees it as a jump link (id), so it goes to the homepage of your main GitHub Pages site.
+
+The URLs look like this:
+https://readytotest.github.io/#testresult/abcd123
+But they should look like this:
+https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
+
+The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken.. how the app tries to load other files from the wrong place. That's my guess, anyway.
 
 This only bites you if you're hosting your personal website on your main user repo and trying to serve something like an Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
 
