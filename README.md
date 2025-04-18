@@ -46,7 +46,7 @@ https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
 
 The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken.. how the app tries to load other files from the wrong place. That's my guess, anyway.
 
-This only bites you if you're hosting your personal website on your main user repo and trying to serve something like an Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
+This only bites you if you're hosting your personal website on your main user repo and trying to serve the Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
 
 - **User or Organization Site**: This is a site served from a repo named `username.github.io` (e.g., `https://username.github.io`). Usually for personal or org websites.
 - **Project Site**: This is anything else. The URL includes the repo name as a subdirectory (e.g., `https://username.github.io/project-name/`).
