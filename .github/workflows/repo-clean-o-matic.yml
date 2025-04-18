@@ -1,3 +1,6 @@
+# CAUTION: 🚨 This will rewrite the git history and remove .webm & .png files for good.
+# WARNING: 💀 Once executed, the files are permanently deleted from the git history.
+
 name: The Repo Clean-O-Matic (removes *.webm & *.png)
 
 on:
@@ -29,8 +32,13 @@ jobs:
         run: |
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      - name: BFG delete .webm files
+      # Deleting .webm files with BFG Repo-Cleaner in a separate step for reliability
+      - name: Delete .webm files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.webm'
+
+      # Deleting .png files with BFG Repo-Cleaner in another separate step for reliability
+      - name: Delete .png files with BFG Repo-Cleaner
+        run: java -jar /tmp/bfg.jar --delete-files '*.png'
 
       - name: Git cleanup
         run: |
