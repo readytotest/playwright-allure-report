@@ -52,7 +52,7 @@ I'm hosting the report in a subdirectory because my **main repo** (`readytotest.
 
 ### GitHub Marketplace Action Limitation
 
-Unfortunately, I couldn't find any documentation on how to account for this issue in the **GitHub Marketplace Action** for Allure. So unless you're prepared to dig deep and write custom scripts to handle this manually (which I'm not doing 😂), this problem with history links in subdirectories is just something you'll have to work around. 
+Unfortunately, I couldn't find any documentation on how to account for this issue in the GitHub Marketplace Action for Allure.
 
 ## My Thoughts
 
