@@ -9,6 +9,7 @@ This repository publishes Playwright test reports to a GitHub Pages site after e
 - ..username.github.io repo. The links will point to your homepage instead
 - You can't easily override Allure's base path via the Marketplace Action
 - BFG Repo-Cleaner is a lifesaver 🛟 when your repo grows to 1GB and will get even bigger
+- Race condition if multiple pull requests opened around the same time (read more below)
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
 
 ## Setup
