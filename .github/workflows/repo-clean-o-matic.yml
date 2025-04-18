@@ -29,9 +29,9 @@ jobs:
         run: |
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      - name: BFG delete .png files
+      - name: BFG delete .webm files
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.png'
+          java -jar /tmp/bfg.jar --delete-files '*.webm'
 
       - name: Git cleanup
         run: |
