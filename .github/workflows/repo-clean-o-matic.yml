@@ -15,7 +15,8 @@ jobs:
       - name: Checkout full repo history
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+          ref: live-reports
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
