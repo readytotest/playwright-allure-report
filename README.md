@@ -66,7 +66,7 @@ Unfortunately, I couldn't find any documentation on how to account for this issu
 
 This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
 
-I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why, even if it takes hours and way too many browser tabs.
+I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why and get it working.
 
 After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
 
