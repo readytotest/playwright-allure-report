@@ -35,21 +35,9 @@ The repository grew in size due to large files (`.webm` and `.png`) being tracke
 
 ## Race Conditions on Concurrent PRs
 
-If multiple pull requests are open and their workflows try to push the Allure report to the `live-reports` branch, you might hit a race condition.
+If multiple pull requests are open and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
-Each workflow checks out the repo at whatever the latest commit was **when that job started**. If another job finishes and pushes changes before the current job does, then the current job is now pushing based on an outdated state. Git rejects it, and you'll see something like: `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
-
->PR 1 opens and runs the workflow, checking out the live-reports branch at commit A1.
->
->PR 2 opens shortly after and runs the workflow, also checking out commit A1.
->
->Workflow 1 pushes its changes to live-reports, updating the branch.
->
->Workflow 2 tries to push its changes, but it fails because the branch is no longer at commit A1  
->(it's been updated by workflow 1).
-
-In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. That error just means the branch has moved on since that job started. I'm not looking into a fix because it doesn't disrupt anything for me.  Worst case, I hit 'rerun job' and it's fine. If you're using this setup in a busier repo or with a team making a bunch of PRs at once, you're probably gonna have to figure out a solution. 
-
+In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't disrupt anything for me.  Worst case, I hit 'rerun job' and it's fine. 
 
 ## Issue with History Links
 
