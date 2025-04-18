@@ -37,9 +37,7 @@ The repository grew in size due to large files (`.webm` and `.png`) being tracke
 
 If multiple pull requests are open and their workflows try to push the Allure report to the `live-reports` branch, you might hit a race condition.
 
-Each workflow checks out the repo at whatever the latest commit was **when that job started**. If another job finishes and pushes changes before the current job does, then the current job is now pushing based on an outdated state. Git rejects it, and you'll see something like:
-
-`! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
+Each workflow checks out the repo at whatever the latest commit was **when that job started**. If another job finishes and pushes changes before the current job does, then the current job is now pushing based on an outdated state. Git rejects it, and you'll see something like: `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
 >PR 1 opens and runs the workflow, checking out the live-reports branch at commit A1.
 >
