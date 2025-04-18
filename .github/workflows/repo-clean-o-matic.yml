@@ -31,10 +31,6 @@ jobs:
 
       - name: BFG delete .png files
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm'
-
-      - name: BFG delete .png files
-        run: |
           java -jar /tmp/bfg.jar --delete-files '*.png'
 
       - name: Git cleanup
