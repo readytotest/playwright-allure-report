@@ -16,7 +16,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: live-reports
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
@@ -30,9 +29,9 @@ jobs:
         run: |
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      - name: Run BFG to delete all .webm and .png files
+      - name: Run BFG to delete all .webm
         run: |
-          java -jar /tmp/bfg.jar --delete-files '{*.webm,*.png}'
+          java -jar /tmp/bfg.jar --delete-files '*.webm'
 
       - name: Git cleanup
         run: |
