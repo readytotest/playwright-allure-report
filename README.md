@@ -38,9 +38,10 @@ Allure's history links use relative paths (like `#testresult/abcd123`). If you'r
 
 You'd expect a 404, but that's not what happens. Since it's a hash (#), the browser doesn't treat it like a real path. It just sees it as a jump link (id), so it goes to the homepage of your main GitHub Pages site.
 
-The URLs look like this:
+The URLs look like this:  
 https://readytotest.github.io/#testresult/abcd123
-But they should look like this:
+
+But they should look like this:  
 https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
 
 The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken.. how the app tries to load other files from the wrong place. That's my guess, anyway.
