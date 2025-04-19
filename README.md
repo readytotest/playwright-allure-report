@@ -30,7 +30,9 @@ If you're wondering where the report files live in this repository, they are loc
 
 ## Repo Size - Problem & Solution
 
-The repository grew in size due to large files `.webm` and `.png`) being tracked by Git, _even after deletion_. This led to the repository growing to 1GB. I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
+The repository grew in size due to large files `.webm` and `.png`) being tracked by Git, _even after deletion_ because that's how GitHub works. Out of curiosity I checked the `repo.size` using `curl -s "https://api.github.com/repos/readytotest/playwright-allure-report" | jq -r '.size'` and was at 1GB in less than two weeks, since I had been pushing a lot of commits. GitHub has a 5GB limit, so I imagine they'd send out an email when getting close to that.
+
+To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. Feel free to use it, although I imagine it will wipe out your screenshots/videos from your previous runs.. not an issue for me, because I've got videos attached to the workflow runs using the HTML reporter. The Repo Clean-O-Matic set to run automatically every Sunday at 12:00 UTC or I can run it manually too.
 
 ## Race Conditions on Concurrent PRs
 
