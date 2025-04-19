@@ -53,14 +53,6 @@ https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
 
 The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken, as if the app tries to load other files from the wrong place. That's my guess, anyway.
 
-This only bites you if you're hosting your personal website on your main user repo and trying to serve the Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
-
-- **User or Organization Site**: This is a site served from a repo named `username.github.io` (e.g., `https://username.github.io`). Usually for personal or org websites.
-- **Project Site**: This is anything else. The URL includes the repo name as a subdirectory (e.g., `https://username.github.io/project-name/`).
-
-If you're in the second setup, where your main site lives in `username.github.io` and your report is in a separate project repo, then Allure's history links will break because they assume everything's served from root.
-
-
 #### Why a Subdirectory?
 
 I'm hosting the report in a subdirectory because my **main repo** (`readytotest.github.io`) is where my personal website lives. I had to put the report in a **different repo** and serve it from a subdirectory, which is why this issue happens.
