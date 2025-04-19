@@ -31,7 +31,7 @@ If you're wondering where the report files live in this repository, they are loc
 
 ## Repo Size - Problem & Solution
 
-The repository grew in size due to large files (`.webm` and `.png`) being tracked by Git, _even after deletion_. This led to the repository growing to 1GB. I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
+The repository grew in size due to large files `.webm` and `.png`) being tracked by Git, _even after deletion_. This led to the repository growing to 1GB. I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. This process can be run manually via GitHub Actions and runs automatically every Sunday at 12:00 UTC.
 
 ## Race Conditions on Concurrent PRs
 
@@ -41,7 +41,7 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
 
 ## Issue with History Links
 
-The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths (like `#testresult/abcd123`). If you're hosting the report in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links break and take you to the root of your main site instead of the test result.
+The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths like `#testresult/abcd123`. If you're hosting the report in a subdirectory like `https://yourusername.github.io/playwright-allure-report/`, those links break and take you to the root of your main site instead of the test result.
 
 The history URLs look like this:  
 https://readytotest.github.io/#testresult/abcd123
@@ -53,7 +53,7 @@ Even when I manually type what seems like the correct link, the report page load
 
 #### Why Did I Put Allure Reports on a Subdirectory?
 
-My **main repo** (`readytotest.github.io`) is where my personal website lives, so I had to put the report in a **different repo** and serve it from the `playwright-allure-report` subdirectory. If you host the allure reports off your main github repo, then you won't have this problem.
+My **main repo** `readytotest.github.io` is where my personal website lives, so I had to put the report in a **different repo** and serve it from the `playwright-allure-report` subdirectory. If you host the reports off your main repo, then you won't have this problem.
 
 ### GitHub Marketplace Action Limitation
 
