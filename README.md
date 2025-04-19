@@ -40,7 +40,7 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
 
 ## Issue with History Links
 
-The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths like `#testresult/abcd123`. If you're hosting the report in a subdirectory like `https://yourusername.github.io/playwright-allure-report/`, those links break and take you to the root of your main site instead of the test result.
+The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths like `#testresult/abcd123`. If you're hosting the report in a subdirectory like `yourusername.github.io/playwright-allure-report/`, those history links break and take you to the root of your main site instead of the test result.
 
 The history URLs look like this:  
 `https://readytotest.github.io/#testresult/abcd123`
