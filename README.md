@@ -51,7 +51,7 @@ https://readytotest.github.io/#testresult/abcd123
 But they should look like this:  
 https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
 
-The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken.. how the app tries to load other files from the wrong place. That's my guess, anyway.
+The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken, as if the app tries to load other files from the wrong place. That's my guess, anyway.
 
 This only bites you if you're hosting your personal website on your main user repo and trying to serve the Allure report from a different repo in a subdirectory. Here's a quick rundown of how GitHub Pages works:
 
@@ -71,11 +71,9 @@ Unfortunately, I couldn't find any documentation on how to account for this issu
 
 ## My Thoughts
 
-This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
-
-I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why and get it working.
+This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly. I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why and get it working.
 
 After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
 
-I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. In the end, the Playwright HTML reporter just feels simpler, and for most CI/CD setups, that's probably all you really need anyway. All you need to do is upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow run summary page.
+I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. The Playwright HTML reporter just feels simpler and for most CI/CD setups, that's probably all you really need anyway. You can upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow run summary page.
 
