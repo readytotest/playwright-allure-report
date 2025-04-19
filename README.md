@@ -43,10 +43,10 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
 The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths like `#testresult/abcd123`. If you're hosting the report in a subdirectory like `https://yourusername.github.io/playwright-allure-report/`, those links break and take you to the root of your main site instead of the test result.
 
 The history URLs look like this:  
-https://readytotest.github.io/#testresult/abcd123
+`https://readytotest.github.io/#testresult/abcd123`
 
 But they should look like this:  
-https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
+`https://readytotest.github.io/playwright-allure-report/#testresult/abcd123`
 
 Even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken, as if the app tries to load other files from the wrong place. That's my guess, anyway.
 
