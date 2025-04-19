@@ -41,21 +41,19 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
 
 ## Issue with History Links
 
-Allure's history links use relative paths (like `#testresult/abcd123`). If you're hosting the report in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links break and take you to the root of your main site instead of the test result.
+The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths (like `#testresult/abcd123`). If you're hosting the report in a subdirectory (like `https://yourusername.github.io/playwright-allure-report/`), those links break and take you to the root of your main site instead of the test result.
 
-You'd expect a 404, but that's not what happens. Since it's a hash (#), the browser doesn't treat it like a real path. It just sees it as a jump link (id), so it goes to the homepage of your main GitHub Pages site.
-
-The URLs look like this:  
+The history URLs look like this:  
 https://readytotest.github.io/#testresult/abcd123
 
 But they should look like this:  
 https://readytotest.github.io/playwright-allure-report/#testresult/abcd123
 
-The issue is, even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken, as if the app tries to load other files from the wrong place. That's my guess, anyway.
+Even when I manually type what seems like the correct link, the report page loads, but I get an 'object not found' error in the middle of it. I think it's because the internal file paths inside the report are also broken, as if the app tries to load other files from the wrong place. That's my guess, anyway.
 
-#### Why a Subdirectory?
+#### Why Did I Put Allure Reports on a Subdirectory?
 
-I'm hosting the report in a subdirectory because my **main repo** (`readytotest.github.io`) is where my personal website lives. I had to put the report in a **different repo** and serve it from a subdirectory, which is why this issue happens.
+My **main repo** (`readytotest.github.io`) is where my personal website lives, so I had to put the report in a **different repo** and serve it from a the `playwright-allure-report` subdirectory. If you host the allure reports off your main github repo, then you won't have this problem.
 
 ### GitHub Marketplace Action Limitation
 
