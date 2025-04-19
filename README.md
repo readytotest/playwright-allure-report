@@ -53,7 +53,7 @@ Even when I manually type what seems like the correct link, the report page load
 
 #### Why Did I Put Allure Reports on a Subdirectory?
 
-My **main repo** (`readytotest.github.io`) is where my personal website lives, so I had to put the report in a **different repo** and serve it from a the `playwright-allure-report` subdirectory. If you host the allure reports off your main github repo, then you won't have this problem.
+My **main repo** (`readytotest.github.io`) is where my personal website lives, so I had to put the report in a **different repo** and serve it from the `playwright-allure-report` subdirectory. If you host the allure reports off your main github repo, then you won't have this problem.
 
 ### GitHub Marketplace Action Limitation
 
