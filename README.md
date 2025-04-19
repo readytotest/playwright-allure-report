@@ -5,11 +5,10 @@ This repository publishes Playwright test reports to a GitHub Pages site after e
 > ✨ If you're here because you're stuck trying to get Allure working with in GitHub Actions with GitHub Pages and subdirectories... Hopefully this saves you a few hours of your life.
 
 #### What I Learned the Hard Way
-- Allure history links break if the report isn't served from your main..
-- ..username.github.io repo. The links will point to your homepage instead
+- Allure history links break if the report isn't served from your main username.githb.io repo
 - You can't easily override Allure's base path via the Marketplace Action
 - BFG Repo-Cleaner is a lifesaver 🛟 when your repo grows to 1GB and will get even bigger
-- Race condition if multiple pull requests opened around the same time (read more below)
+- Race condition if multiple pull requests opened around the same time
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
 
 ## Setup
@@ -27,7 +26,7 @@ The setup is managed through the YAML file `playwright-mysite.yml`, located in t
 
 If you're wondering where the report files live in this repository, they are located in the [live-reports branch](https://github.com/readytotest/playwright-allure-report/tree/live-reports).
 
-> I saw in the [Allure docs](https://allurereport.org/docs/playwright/#writing-tests) that you can annotate Playwright tests with metadata. It's cool stuff, but I'm not adding any of that to my Playwright specs. I already burned 🔥🔥🔥 through 24 hours just 🔌 wiring ➰⚡ this thing up to CI and GitHub Pages, and I'm not really looking to go deeper right now.
+> I saw in the [Allure docs](https://allurereport.org/docs/playwright/#writing-tests) that you can annotate Playwright tests with metadata. It's cool stuff, but I'm not adding any of that to my Playwright specs. I already 🔥 burned through 24 hours just 🔌 wiring ➰⚡ this thing up to CI and GitHub Pages, and I'm not really looking to go deeper right now.
 
 ## Repo Size - Problem & Solution
 
@@ -37,7 +36,7 @@ The repository grew in size due to large files `.webm` and `.png`) being tracked
 
 If multiple pull requests are open and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
-In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. [I'm not looking into a fix](http://readytotest.github.io/html/philosophy.htm#wont-do) because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
+In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
 ## Issue with History Links
 
@@ -55,7 +54,7 @@ Even when I manually type what seems like the correct link, the report page load
 
 My **main repo** `readytotest.github.io` is where my personal website lives, so I had to put the report in a **different repo** and serve it from the `playwright-allure-report` subdirectory. If you host the reports off your main repo, then you won't have this problem.
 
-### GitHub Marketplace Action Limitation
+#### GitHub Marketplace Action Limitation
 
 Unfortunately, I couldn't find any documentation on how to account for this issue in the GitHub Marketplace Action for Allure.
 
@@ -63,7 +62,7 @@ Unfortunately, I couldn't find any documentation on how to account for this issu
 
 This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly. I'm not the type to throw my hands up when things get tricky. If something's broken or confusing, I want to figure out why and get it working.
 
-After all that, I actually prefer the built-in **Playwright HTML reporter** 😹😹😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
+After all that, I actually prefer the built-in **Playwright HTML reporter** 😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
 
 I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. The Playwright HTML reporter just feels simpler and for most CI/CD setups, that's probably all you really need anyway. You can upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow summary page.
 
