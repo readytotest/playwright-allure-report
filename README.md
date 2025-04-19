@@ -37,7 +37,7 @@ The repository grew in size due to large files `.webm` and `.png`) being tracked
 
 If multiple pull requests are open and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
-In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't disrupt anything for me.  Worst case, I hit 'rerun job' and it's fine.
+In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. [I'm not looking into a fix](http://readytotest.github.io/html/philosophy.htm#wont-do) because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
 ## Issue with History Links
 
