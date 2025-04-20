@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
+          ref: live-reports
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
