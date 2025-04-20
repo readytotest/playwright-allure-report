@@ -37,6 +37,19 @@ jobs:
       - name: Delete .webm files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.webm'
 
+      - name: Git cleanup
+        run: |
+          git reflog expire --expire=now --all
+          git gc --prune=now --aggressive
+          git repack -a -d -f
+          git prune-packed
+
+      - name: Force push to GitHub
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin --all --force
+          git push origin --force --tags
+
       # Deleting .png files with BFG Repo-Cleaner
       - name: Delete .png files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.png'
