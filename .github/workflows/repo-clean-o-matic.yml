@@ -34,11 +34,11 @@ jobs:
 
       # Deleting .webm files with BFG Repo-Cleaner in a separate step for reliability
       - name: Delete .webm files with BFG Repo-Cleaner
-        run: java -jar /tmp/bfg.jar --delete-files '*.webm' --no-blob-protection
+        run: java -jar /tmp/bfg.jar --delete-files '*.webm'
 
       # Deleting .png files with BFG Repo-Cleaner in a separate step for reliability
       - name: Delete .png files with BFG Repo-Cleaner
-        run: java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
+        run: java -jar /tmp/bfg.jar --delete-files '*.png'
 
       - name: Force push to GitHub
         run: |
