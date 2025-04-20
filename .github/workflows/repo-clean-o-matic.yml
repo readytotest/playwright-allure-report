@@ -40,15 +40,6 @@ jobs:
       - name: Delete .png files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
 
-      - name: Git cleanup
-        run: |
-          git reflog expire --expire=now --all
-          git gc --prune=now --aggressive
-
-      - name: Add empty commit after BFG cleanup
-        run: |
-          git commit --allow-empty -m "Trigger cleanup push"
-
       - name: Force push to GitHub
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
