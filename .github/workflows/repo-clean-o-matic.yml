@@ -88,6 +88,10 @@ jobs:
       #
       # Or both together:
       # git rev-list --objects --all | grep -E '\.png$|\.webm$'
+
+      # One last way you can check the size of the repo and not have to wait around for the GitHub repo.size to update
+      # After you run the cleaner, just clone a new copy of the repo and run the following command: du -sh .git
+      # Or just go navigate to the repo in your file explorer and right click it and get info on macOS
       
       - name: Delayed update of GitHub repository size after cleanup
         run: |
