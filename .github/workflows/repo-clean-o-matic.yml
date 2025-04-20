@@ -1,6 +1,11 @@
 # CAUTION: 🚨 This will rewrite the git history and remove .webm & .png files for good.
 # WARNING: 💀 Once executed, the files are permanently deleted from the git history.
-# NOTICE!: 📌 You need to go into the repo actions setting and allow the token write access.
+# NOTICE!: 📌 You need to go into the repo settings/actions/general/workflow permissions/enable set read+write
+# EXTRA:   ℹ️ The token used here is the built-in GITHUB_TOKEN. Not a personal access token (PAT). So you don't need to create a new token.
+# EXTRA:   ℹ️ At first, I tried git filter-repo, but had a bunch of issues to troubleshoot. So I used BFG Repo-Cleaner instead.
+# EXTRA:   ℹ️ I also tried the suggested way of cloning a mirror with git, but had issues later in the workflow.
+# EXTRA:   ℹ️ And that is why I ended up using the Actions/Checkout actions checkout@v4 with fetch-depth: 0.
+# EXTRA:   ℹ️ I think I got this all dialed in the way I want it now. Time will tell. lol
 
 name: The Repo Clean-O-Matic
 
@@ -20,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: live-reports
+          ref: live-reports #If you're using the main branch for the reports, you can change thi to main or just remove this line
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
@@ -50,6 +55,7 @@ jobs:
           git repack -a -d -f
           git prune-packed
 
+      # Make sure you update the branch name here if you're not using "live-reports" as your branch name.
       - name: Force push to GitHub
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
