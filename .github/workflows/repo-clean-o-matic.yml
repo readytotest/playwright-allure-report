@@ -40,6 +40,13 @@ jobs:
       - name: Delete .png files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.png'
 
+      - name: Git cleanup
+        run: |
+          git reflog expire --expire=now --all
+          git gc --prune=now --aggressive
+          git repack -a -d -f
+          git prune-packed
+
       - name: Force push to GitHub
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
@@ -62,7 +69,7 @@ jobs:
       # Hopefully this will help you avoid the headache of trying to figure out if the script is working or if it's just GitHub being slow to update. LOL
       - name: Delayed update of GitHub repository size after cleanup
         run: |
-          echo "**The repository size probably won't update immediately after running this workflow.**"
+          echo "The repository size probably won't update immediately after running this workflow."
           echo "GitHub's backend takes time to recalculate and reflect the updated repository size."
           echo "For smaller repositories or minor changes, the size update may happen within a few hours."
           echo "For larger repositories or significant history rewrites, it can take up to 1-2 days"
