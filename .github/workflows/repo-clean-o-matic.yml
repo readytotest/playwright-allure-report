@@ -2,7 +2,7 @@
 # WARNING: 💀 Once executed, the files are permanently deleted from the git history.
 # NOTICE!: 📌 You need to go into the repo actions setting and allow the token write access.
 
-name: The Repo Clean-O-Matic (removes *.webm & *.png)
+name: The Repo Clean-O-Matic
 
 on:
   workflow_dispatch:
