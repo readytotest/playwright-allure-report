@@ -8,6 +8,7 @@ This repository publishes Playwright test reports to a GitHub Pages site after e
 - Allure history links break if the report isn't served from your main username.githb.io repo
 - You can't easily override Allure's base path via the Marketplace Action
 - BFG Repo-Cleaner is a lifesaver 🛟 when your repo grows to 1GB and will get even bigger
+- GitHub can take hours or days to update repo.size after cleaning with BFG (see comments in YAML)
 - Race condition if multiple pull requests opened around the same time
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
 
