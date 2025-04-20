@@ -19,8 +19,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          fetch-tags: true
-          ref: live-reports
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
@@ -37,10 +35,6 @@ jobs:
       # Deleting .webm files with BFG Repo-Cleaner in a separate step for reliability
       - name: Delete .webm files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.webm'
-
-      # Deleting .png files with BFG Repo-Cleaner in another separate step for reliability
-      - name: Delete .png files with BFG Repo-Cleaner
-        run: java -jar /tmp/bfg.jar --delete-files '*.png'
 
       - name: Git cleanup
         run: |
