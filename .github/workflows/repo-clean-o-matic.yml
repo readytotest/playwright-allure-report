@@ -1,3 +1,8 @@
+# THIS SCRIPT WAS DESIGNED TO KEEP THE REPO SIZE SMALL THAT HOSTS THE ALLURE REPORTS
+# OTHERWISE THE REPO SIZE WILL GROW WAY TO BIG EVEN IF YOU DELETE THE FILES
+# AT MY RATE IT WAS GROWING ABOUT 1GB EVERY TWO WEEKS, WHICH MEANS I'D HIT THE 5GB LIMIT QUICKLY
+# BECAUSE GIT KEEPS THE HISTORY OF ALL FILES EVEN IF YOU DELETE THEM
+
 # CAUTION: 🚨 This will rewrite the git history and remove .webm & .png files for good.
 # WARNING: 💀 Once executed, the files are permanently deleted from the git history.
 # NOTICE!: 📌 You need to go into the repo settings/actions/general/workflow permissions/enable set read+write
