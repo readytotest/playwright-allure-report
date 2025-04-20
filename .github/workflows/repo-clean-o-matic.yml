@@ -32,11 +32,11 @@ jobs:
         run: |
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      # Deleting .webm files with BFG Repo-Cleaner in a separate step for reliability
+      # Deleting .webm files with BFG Repo-Cleaner
       - name: Delete .webm files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.webm'
 
-      # Deleting .png files with BFG Repo-Cleaner in a separate step for reliability
+      # Deleting .png files with BFG Repo-Cleaner
       - name: Delete .png files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.png'
 
@@ -54,10 +54,19 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
-      - name: Final note about repo size
+      # GitHub typically takes a while to update the repo.size, which can significantly delay testing changes to the script. 
+      # This creates a challenge during QA testing, as it's hard to tell if any issues are due to the changes you made or simply
+      # because the repo size hasn't updated yet. 
+      # It becomes even trickier when multiple changes are made, as it’s difficult to pinpoint which one actually caused the size change! 
+      # If you're tweaking the script, it's best to wait at least a full day before checking the size to avoid confusion.
+      # Hopefully this will help you avoid the headache of trying to figure out if the script is working or if it's just GitHub being slow to update. LOL
+      - name: Delayed update of GitHub repository size after cleanup
         run: |
-          echo "Note: GitHub repo size may take a while to update after cleanup."
+          echo "**The repository size probably won't update immediately after running this workflow.**"
+          echo "GitHub's backend takes time to recalculate and reflect the updated repository size."
+          echo "For smaller repositories or minor changes, the size update may happen within a few hours."
+          echo "For larger repositories or significant history rewrites, it can take up to 1-2 days"
           echo "You can manually check it later with:"
-          echo "  curl -s https://api.github.com/repos/${{ github.repository }} | jq -r '.size'"
+          echo "curl -s https://api.github.com/repos/${{ github.repository }} | jq -r '.size'"
           echo "That'll return the size in KB. Divide by 1024 to get MB."
         
