@@ -73,13 +73,15 @@ jobs:
       
       # To avoid waiting for the repo.size update, you can clone a fresh local copy of the repository and check the history directly.
       # After cloning the repo, run the following commands to see what .webm or .png files are still present in the history:
-      # This might help, but sometimes it looks like the files are still there even after running the script....need to investigate this further.
       # https://git-scm.com/docs/git-rev-list
       # For .webm files:
       # git rev-list --objects --all | grep '\.webm$'
       #
       # For .png files:
       # git rev-list --objects --all | grep '\.png$'
+      #
+      # Or both together:
+      # git rev-list --objects --all | grep -E '\.png$|\.webm$'
       
       - name: Delayed update of GitHub repository size after cleanup
         run: |
