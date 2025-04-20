@@ -33,26 +33,11 @@ jobs:
         run: |
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
-      # Deleting .webm files with BFG Repo-Cleaner
+      # Deleting files with BFG Repo-Cleaner
       - name: Delete .webm files with BFG Repo-Cleaner
-        run: java -jar /tmp/bfg.jar --delete-files '*.webm' --no-blob-protection
-
-      - name: Git cleanup
         run: |
-          git reflog expire --expire=now --all
-          git gc --prune=now --aggressive
-          git repack -a -d -f
-          git prune-packed
-
-      - name: Force push to GitHub
-        run: |
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git push origin --all --force
-          git push origin --force --tags
-
-      # Deleting .png files with BFG Repo-Cleaner
-      - name: Delete .png files with BFG Repo-Cleaner
-        run: java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files "*.webm" --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files "*.png" --no-blob-protection
 
       - name: Git cleanup
         run: |
@@ -81,6 +66,17 @@ jobs:
       # It becomes even trickier when multiple changes are made, as it’s difficult to pinpoint which one actually caused the size change! 
       # If you're tweaking the script, it's best to wait at least a full day before checking the size to avoid confusion.
       # Hopefully this will help you avoid the headache of trying to figure out if the script is working or if it's just GitHub being slow to update. LOL
+      
+      # To avoid waiting for the repo.size update, you can clone a fresh local copy of the repository and check the history directly.
+      # After cloning the repo, run the following commands to see what .webm or .png files are still present in the history:
+      # You'd also want to check this before running the script to see how many files are in the history before you start.
+      # 
+      # For .webm files:
+      # git rev-list --objects --all | grep '\.webm$'
+      #
+      # For .png files:
+      # git rev-list --objects --all | grep '\.png$'
+      
       - name: Delayed update of GitHub repository size after cleanup
         run: |
           echo "The repository size probably won't update immediately after running this workflow."
