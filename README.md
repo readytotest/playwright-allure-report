@@ -39,6 +39,8 @@ To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.c
 
 If multiple pull requests are open and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
+>I think this happens because one of the PRs checked out the branch, but then the branch moved on (from another PR finishing and pushing its changes). So when this one tries to write, Git throws the error above and also says something like "expecting this commit, but got this one".
+
 In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
 ## Issue with History Links
