@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: live reports
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
@@ -43,11 +44,11 @@ jobs:
           git repack -a -d -f
           git prune-packed
 
-      - name: Force push all cleaned branches and tags
+      - name: Force push to GitHub
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git push origin --force --all
-          git push origin --force --tags
+          git push origin live-reports --force
+          git push origin live-reports --force --tags
 
       - name: Upload BFG cleanup report files as artifact
         uses: actions/upload-artifact@v4.6.2
