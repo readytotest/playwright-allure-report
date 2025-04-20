@@ -36,7 +36,6 @@ jobs:
       # Deleting files with BFG Repo-Cleaner
       - name: Delete .webm files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files "*.webm" --no-blob-protection
           java -jar /tmp/bfg.jar --delete-files "*.png" --no-blob-protection
 
       - name: Git cleanup
