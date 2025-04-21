@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: live-reports #If you're using the main branch for the reports, you can change thi to main or just remove this line
+          ref: live-reports #If you're using the main branch for the reports, you can change this to main or just remove this line
 
       - name: Check starting repo size on GitHub
         continue-on-error: true
