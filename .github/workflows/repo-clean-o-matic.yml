@@ -22,6 +22,7 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+    timeout-minutes: 10 #I'd set a timeout in case something hangs, which I've seen happen. This could waste your GitHub Actions minutes.
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
