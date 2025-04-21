@@ -9,7 +9,7 @@
 # EXTRA:   ℹ️ The token used here is the built-in GITHUB_TOKEN. Not a personal access token (PAT). So you don't need to create a new token.
 # EXTRA:   ℹ️ At first, I tried git filter-repo, but had a bunch of issues to troubleshoot. So I used BFG Repo-Cleaner instead.
 # EXTRA:   ℹ️ I also tried the suggested way of cloning a mirror with git, but had issues later in the workflow.
-# EXTRA:   ℹ️ And that is why I ended up using the Actions/Checkout actions checkout@v4 with fetch-depth: 0.
+# EXTRA:   ℹ️ And that is why I ended up using the GitHub Marketplace Actions/Checkout with fetch-depth: 0.
 # EXTRA:   ℹ️ I think I got this all dialed in the way I want it now. Time will tell. lol
 
 name: The Repo Clean-O-Matic
