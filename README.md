@@ -8,7 +8,7 @@ This repository publishes Playwright test reports to a GitHub Pages site after e
 - Allure history links break if the report isn't served from your main username.githb.io repo
 - You can't easily override Allure's base path via the Marketplace Action
 - BFG Repo-Cleaner is a lifesaver 🛟 when your repo grows to 1GB and will get even bigger
-- GitHub can take hours or days to update repo.size after cleaning with BFG (see comments in YAML)
+- GitHub can take hours or days to update `repo.size` after cleaning with BFG
 - Race condition if multiple pull requests opened around the same time
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
 
@@ -33,7 +33,7 @@ If you're wondering where the report files live in this repository, they are loc
 
 The repository grew in size due to large files `.webm` and `.png`) being tracked by Git, _even after deletion_ because that's how GitHub works. Out of curiosity I checked the `repo.size` using `curl -s "https://api.github.com/repos/readytotest/playwright-allure-report" | jq -r '.size'` and was at 1GB in less than two weeks, since I had been pushing a lot of commits. GitHub has a 5GB limit, so I imagine they'd send out an email when getting close to that.
 
-To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. Before I knew it, I was six hours deep in YAML and shell scripts at 2am. I'm not that great with this stuff, but it's a great learning experience researching, looking at the documentation, and all the trial and error. Feel free to use it, although I imagine it will wipe out your screenshots/videos from your _previous runs_.. not an issue for me, because I've got videos attached to the workflow runs using the HTML reporter. The Repo Clean-O-Matic is set to run automatically every Sunday at 12:00 UTC or I can run it manually too.
+To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. Before I knew it, I was six hours deep in YAML and shell scripts at 2am. I'm not that great with this stuff, but it's a great learning experience researching, looking at the documentation, and all the trial and error. Feel free to use it, although I imagine it will wipe out your screenshots/videos from your _previous runs_.. not an issue for me, because I've got videos attached to the workflow runs using the HTML reporter. The Repo Clean-O-Matic is set to run automatically every Sunday at 12:00 UTC or I can run it manually too. Also the size of the repo can take quite a while to update after you run this, but there's other ways to see if it worked. See the comments in the [YAML](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) for more details.
 
 ## Race Conditions on Concurrent PRs
 
