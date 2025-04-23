@@ -27,7 +27,7 @@ The setup is managed through the YAML file `playwright-mysite.yml`, located in t
 
 If you're wondering where the report files live in this repository, they are located in the [live-reports branch](https://github.com/readytotest/playwright-allure-report/tree/live-reports).
 
-> I saw in the [Allure docs](https://allurereport.org/docs/playwright/#writing-tests) that you can annotate Playwright tests with metadata. It's cool stuff, but I'm not adding any of that to my Playwright specs. I already 🔥 burned through 24 hours just 🔌 wiring ➰⚡ this thing up to CI and GitHub Pages, and I'm not really looking to go deeper right now.
+> ✨ I saw in the [Allure docs](https://allurereport.org/docs/playwright/#writing-tests) that you can annotate Playwright tests with metadata. It's cool stuff, but I'm not adding any of that to my Playwright specs. I already 🔥 burned through 24 hours just 🔌 wiring ➰⚡ this thing up to CI and GitHub Pages, and I'm not really looking to go deeper right now.
 
 ## Repo Size - Problem & Solution
 
@@ -39,7 +39,7 @@ To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.c
 
 If multiple pull requests (based on the same branch commit) are opened and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
 
-> What's happening is when one of the PRs tries to push back it's throwing an error saying I was expecting this commit, but got this one instead.
+> ✨ What's happening is when one of the PRs tries to push back it's throwing an error saying I was expecting this commit, but got this one instead.
 
 In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
