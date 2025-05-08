@@ -46,15 +46,24 @@ jobs:
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
       # Deleting files with BFG Repo-Cleaner
-      # This started out with png and webm files, but we need to add more file 
-      # types to the list because I see the repo size steadily increasing
-      # Once things stabilize, I'll look into the syntax of combining all deletions
-      # into one line instead of separate steps.. but I know this works, so I'm sticking
-      # with separate steps for now.
+      # This started out with png and webm files, but I added more file
+      # types to the list because the repo size was steadily increasing and 
+      # it got back up to 160MB! Now it's down to 4MB. I think it was the .zip
+      # files taking up all that extra space too.. I'm just gonna leave in all
+      # the file types I have here though.
 
-      # If you really want to nuke the file, including any blobs referenced by the
+      # And I know it's messy having all the file types as different steps, but
+      # it works... I'll eventually tinker with it to figure out the syntax
+      # to get them all in one step, all in one line to clean things up, but
+      # I'm wiped out for the day, so this is being added to the backlog.
+
+      # If you really want to nuke the files, including any blobs referenced by the
       # latest commit (HEAD), then use --no-blob-protection AT YOUR OWN RISK!
       # Example:  java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
+      # If you do it, then it's gonna wipe out your current report and you'll end
+      # up with a blank page..until you push some more commits and a new report is
+      # created. I don't think you'd need to do this at least not for these reports,
+      # but if you want to totally erase a sensitive file, then yeah you'd do it.
 
       ########### BEGIN DELETE FILE TYPE SECTION ###########
       - name: Delete .png files with BFG Repo-Cleaner
