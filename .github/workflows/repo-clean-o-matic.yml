@@ -55,31 +55,31 @@ jobs:
       ########### BEGIN DELETE FILE TYPE SECTION ###########
       - name: Delete .png files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.png'
+          java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
 
       - name: Delete .webm files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm'
+          java -jar /tmp/bfg.jar --delete-files '*.webm' --no-blob-protection
       
       - name: Delete .txt files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.txt'
+          java -jar /tmp/bfg.jar --delete-files '*.txt' --no-blob-protection
 
       - name: Delete .css files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.css'
+          java -jar /tmp/bfg.jar --delete-files '*.css' --no-blob-protection
 
       - name: Delete .csv files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.csv'
+          java -jar /tmp/bfg.jar --delete-files '*.csv' --no-blob-protection
 
       - name: Delete .js files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.js'
+          java -jar /tmp/bfg.jar --delete-files '*.js' --no-blob-protection
 
       - name: Delete .json files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.json'
+          java -jar /tmp/bfg.jar --delete-files '*.json' --no-blob-protection
       ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
