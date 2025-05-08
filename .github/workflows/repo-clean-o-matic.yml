@@ -54,6 +54,10 @@ jobs:
         run: |
           java -jar /tmp/bfg.jar --delete-files '*.webm'
       
+      - name: Delete .txt files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.txt'
+      
       - name: Git cleanup
         run: |
           git reflog expire --expire=now --all
