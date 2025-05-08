@@ -72,6 +72,14 @@ jobs:
       - name: Delete .csv files with BFG Repo-Cleaner
         run: |
           java -jar /tmp/bfg.jar --delete-files '*.csv'
+
+      - name: Delete .js files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.js'
+
+      - name: Delete .json files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.json'
       ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
