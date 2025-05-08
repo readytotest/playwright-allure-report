@@ -48,7 +48,7 @@ jobs:
       # Deleting files with BFG Repo-Cleaner
       # This started out with png and webm files, but we need to add more file 
       # types to the list because I see the repo size steadily increasing
-      # Once things stabilize, I'll look into the syntax of combiing all deletions
+      # Once things stabilize, I'll look into the syntax of combining all deletions
       # into one line instead of separate steps.. but I know this works, so I'm sticking
       # with separate steps for now.
 
