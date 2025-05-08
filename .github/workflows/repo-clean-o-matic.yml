@@ -46,6 +46,13 @@ jobs:
           curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
 
       # Deleting files with BFG Repo-Cleaner
+      # This started out with png and webm files, but we need to add more file 
+      # types to the list because I see the repo size steadily increasing
+      # Once things stabilize, I'll look into the syntax of combiing all deletions
+      # into one line instead of separate steps.. but I know this works, so I'm sticking
+      # with separate steps for now.
+
+      ########### BEGIN DELETE FILE TYPE SECTION ###########
       - name: Delete .png files with BFG Repo-Cleaner
         run: |
           java -jar /tmp/bfg.jar --delete-files '*.png'
@@ -57,6 +64,15 @@ jobs:
       - name: Delete .txt files with BFG Repo-Cleaner
         run: |
           java -jar /tmp/bfg.jar --delete-files '*.txt'
+
+      - name: Delete .css files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.css'
+
+      - name: Delete .csv files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.csv'
+      ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
         run: |
