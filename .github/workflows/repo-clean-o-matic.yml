@@ -52,34 +52,38 @@ jobs:
       # into one line instead of separate steps.. but I know this works, so I'm sticking
       # with separate steps for now.
 
+      # If you really want to nuke the file, including any blobs referenced by the
+      # latest commit (HEAD), then use --no-blob-protection AT YOUR OWN RISK!
+      # Example:  java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
+
       ########### BEGIN DELETE FILE TYPE SECTION ###########
       - name: Delete .png files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.png'
 
       - name: Delete .webm files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.webm'
       
       - name: Delete .txt files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.txt' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.txt'
 
       - name: Delete .css files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.css' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.css'
 
       - name: Delete .csv files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.csv' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.csv'
 
       - name: Delete .js files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.js' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.js'
 
       - name: Delete .json files with BFG Repo-Cleaner
         run: |
-          java -jar /tmp/bfg.jar --delete-files '*.json' --no-blob-protection
+          java -jar /tmp/bfg.jar --delete-files '*.json'
       ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
