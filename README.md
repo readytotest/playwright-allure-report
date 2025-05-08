@@ -44,7 +44,7 @@ If multiple pull requests (based on the same branch commit) are opened and their
 In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
 **Just thought of a workaround MAY-8-2025**  
- I added `continue-on-error: true` to the deploy Allure report steps in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
+ I added `continue-on-error: true` to the deploy Allure report step in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
 
 ## Issue with History Links
 
