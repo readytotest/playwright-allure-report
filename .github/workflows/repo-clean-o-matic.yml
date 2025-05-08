@@ -84,6 +84,14 @@ jobs:
       - name: Delete .json files with BFG Repo-Cleaner
         run: |
           java -jar /tmp/bfg.jar --delete-files '*.json'
+      
+      - name: Delete .zip files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.zip'
+
+      - name: Delete .html files with BFG Repo-Cleaner
+        run: |
+          java -jar /tmp/bfg.jar --delete-files '*.html'
       ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
