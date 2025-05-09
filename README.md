@@ -35,6 +35,9 @@ The repository grew in size due to large files `.webm` and `.png` being tracked 
 
 To solve the problem, I created [The Repo Clean-O-Matic (YAML)](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) that runs the **BFG Repo-Cleaner** to **rewrite Git history** and remove these files from all commits, except the latest production commit. Before I knew it, I was six hours deep in YAML and shell scripts at 2am. I'm not that great with this stuff, but it's a great learning experience researching, looking at the documentation, and all the trial and error. Feel free to use it, although I imagine it will wipe out your screenshots/videos from your _previous runs_.. not an issue for me, because I've got videos attached to the workflow runs using the HTML reporter. The Repo Clean-O-Matic is set to run automatically every Sunday at 12:00 UTC or I can run it manually too. Also the size of the repo can take quite a while to update after you run this, but there's other ways to see if it worked. See the comments in the [YAML](https://github.com/readytotest/playwright-allure-report/blob/main/.github/workflows/repo-clean-o-matic.yml) for more details.
 
+**Update MAY 08 2025**  
+It turns out that it wasn't just `.webm` and `.png` files causing the repo to grow. Even after running the cleaner regularly I was watching it grow steadily to 160MB. I couldn't get it smaller either until I added more file types to the delete list. There were some `.zip` files taking up a lot of space, and I noticed the `.css` file was around 1MB (Deploy 100 reports and you've got a 100MB repo size in just deleted .css files alone). Anyway, I went ahead and added nearly every file type and now when I run it, the repo size is around 5MB.
+
 ## Race Conditions on Concurrent PRs
 
 If multiple pull requests (based on the same branch commit) are opened and their workflows try to access the the branch the Allure reports live in, you might hit a race condition when one of the workflows tries to push the report back to that repo. `! [remote rejected] live-reports -> live-reports (cannot lock ref 'refs/heads/live-reports': is locked`
@@ -43,8 +46,8 @@ If multiple pull requests (based on the same branch commit) are opened and their
 
 In my case it's multiple Dependabot PRs all being opened at the same time that cause this, and it's not a big deal for me. I just merge whichever one passed clean, and the others sort themselves out by automatically rebasing and rerunning. I'm not looking into a fix because it doesn't really have much of an impact.  Worst case, I hit 'rerun job' and it's fine.
 
-**Just thought of a workaround MAY-8-2025**  
- I added `continue-on-error: true` to the deploy Allure report step in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
+**Updte MAY 08 2025**  
+ Just thought of a workaround. I added `continue-on-error: true` to the deploy Allure report step in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
 
 ## Issue with History Links
 
