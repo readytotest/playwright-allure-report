@@ -18,7 +18,7 @@ The setup is managed through the YAML file `playwright-mysite.yml`, located in t
 
 ## How It Works
 
-1. **Playwright Tests**: After running Playwright tests, Allure generates the test reports.
+1. **Playwright Tests**: After running Playwright tests, `allure-report-action` generates the test reports.
 2. **Deployment**: The generated reports are automatically deployed to the GitHub Pages site using the `actions-gh-pages` GitHub Action.
 3. **Automation**: This entire process is triggered by push or PR in the `readytotest.github.io` repo (my website)
 4. **Live Reports**: The reports are deployed to the GitHub Pages site. You can view them here [readytotest.github.io/playwright-allure-report](https://readytotest.github.io/playwright-allure-report/).
