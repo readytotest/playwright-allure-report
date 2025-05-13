@@ -50,10 +50,12 @@ jobs:
       # Deleting files with BFG Repo-Cleaner
       # This started out with png and webm files, but I added more file
       # types to the list because the repo size was steadily increasing and 
-      # it got back up to 160MB! Now it's down to 4MB.
+      # it got back up to 160MB! Now it's down to under 5MB.
 
-      # I'm gonna run this with all file types on one line to organize this
-      # see if I have the syntax right or not.
+      # This will delete all the file types not in the current commit
+      # If you want to delete the files in the current commit, then add the --no-blob-protection flag
+      # to the end of the command below. They'll be gone for good though and you're report page
+      # will be blank until you run more tests.
 
       ########### BEGIN DELETE FILE TYPE SECTION ###########
       - name: Delete files with BFG Repo-Cleaner
