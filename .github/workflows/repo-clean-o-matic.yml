@@ -50,59 +50,14 @@ jobs:
       # Deleting files with BFG Repo-Cleaner
       # This started out with png and webm files, but I added more file
       # types to the list because the repo size was steadily increasing and 
-      # it got back up to 160MB! Now it's down to 4MB. I think it was the .zip
-      # files taking up all that extra space too.. I'm just gonna leave in all
-      # the file types I have here though.
+      # it got back up to 160MB! Now it's down to 4MB.
 
-      # And I know it's messy having all the file types as different steps, but
-      # it works... I'll eventually tinker with it to figure out the syntax
-      # to get them all in one step, all in one line to clean things up, but
-      # I'm wiped out for the day, so this is being added to the backlog.
-
-      # If you really want to nuke the files, including any blobs referenced by the
-      # latest commit (HEAD), then use --no-blob-protection AT YOUR OWN RISK!
-      # Example:  java -jar /tmp/bfg.jar --delete-files '*.png' --no-blob-protection
-      # If you do it, then it's gonna wipe out your current report and you'll end
-      # up with a blank page..until you push some more commits and a new report is
-      # created. I don't think you'd need to do this at least not for these reports,
-      # but if you want to totally erase a sensitive file, then yeah you'd do it.
+      # I'm gonna run this with all file types on one line to organize this
+      # see if I have the syntax right or not.
 
       ########### BEGIN DELETE FILE TYPE SECTION ###########
-      - name: Delete .png files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.png'
-
-      - name: Delete .webm files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.webm'
-      
-      - name: Delete .txt files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.txt'
-
-      - name: Delete .css files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.css'
-
-      - name: Delete .csv files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.csv'
-
-      - name: Delete .js files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.js'
-
-      - name: Delete .json files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.json'
-      
-      - name: Delete .zip files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.zip'
-
-      - name: Delete .html files with BFG Repo-Cleaner
-        run: |
-          java -jar /tmp/bfg.jar --delete-files '*.html'
+      - name: Delete files with BFG Repo-Cleaner
+        run: java -jar /tmp/bfg.jar --delete-files '*.{png,webm,txt,css,csv,js,json,zip,html}'
       ############ END DELETE FILE TYPE SECTION ############
       
       - name: Git cleanup
