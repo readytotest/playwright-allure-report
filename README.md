@@ -77,6 +77,7 @@ After all that, I actually prefer the built-in **Playwright HTML reporter** 😹
 
 I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. The Playwright HTML reporter just feels simpler and for most CI/CD setups, that's probably all you really need anyway. You can upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow summary page.
 
+## 🚦 Badges
 **Commit Activity**  
 [![Commit activity](https://img.shields.io/github/commit-activity/t/readytotest/playwright-allure-report?style=social&color=%23FF69B4)](https://github.com/readytotest/playwright-allure-report/commits/main/)
 [![Last commit](https://img.shields.io/github/last-commit/readytotest/playwright-allure-report?style=social)](https://github.com/readytotest/playwright-allure-report/commits/main/)
