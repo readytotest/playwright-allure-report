@@ -3,7 +3,8 @@
 # AT MY RATE IT WAS GROWING ABOUT 1GB EVERY TWO WEEKS, WHICH MEANS I'D HIT THE 5GB LIMIT QUICKLY
 # BECAUSE GIT KEEPS THE HISTORY OF ALL FILES EVEN IF YOU DELETE THEM (AND THEY STILL COUNT TOWARDS THE SIZE)
 
-# CAUTION: 🚨 This will rewrite the git history and remove .webm & .png files for good.
+# CAUTION: 🚨 This will rewrite the git history and remove a list of files types forever!
+# CAUTION: ⬇️ Scroll down below to see what file type extensions will be deleted.
 # WARNING: 💀 Once executed, the files are permanently deleted from the git history.
 # NOTICE!: 📌 You need to go into the repo settings/actions/general/workflow permissions/enable set read+write
 # EXTRA:   ℹ️ The token used here is the built-in GITHUB_TOKEN. Not a personal access token (PAT). So you don't need to create a new token.
@@ -52,16 +53,35 @@ jobs:
       # types to the list because the repo size was steadily increasing and 
       # it got back up to 160MB! Now it's down to under 5MB.
 
-      # This will delete all the file types not in the current commit
-      # If you want to delete the files in the current commit, then add the --no-blob-protection flag
-      # to the end of the command below. They'll be gone for good though and your report page
-      # will be blank until you run more tests.
-
-      ########### BEGIN DELETE FILE TYPE SECTION ###########
+      ########### ❌❌⚠️❌❌  ATTENTION ❌❌⚠️❌❌  ###########
+      #✂️      File types to delete in git history       ✂️#
+      ########### BEGIN DELETE FILE TYPE SECTION ##########
       - name: Delete files with BFG Repo-Cleaner
         run: java -jar /tmp/bfg.jar --delete-files '*.{png,webm,txt,css,csv,js,json,zip,html}'
       ############ END DELETE FILE TYPE SECTION ############
-      
+      #Deletes all the file types NOT in the current commit#
+
+      # 🚩 OK, some notes for people using this config not
+      # 🚩 for managing Allure report size, but for someone who may
+      # 🚩 have found themselves in a situation where they accidentally
+      # 🚩 committed files they don't want in git history at all.
+      # 🚩 If you want to delete the files INCLUDING those in 
+      # 🚩 the CURRENT COMMIT, then add the --no-blob-protection flag
+      # 🚩 to the end of the command. They'll be gone for good.
+      #
+      # 🚩 I think you'd only want to do that if you committed some
+      # 🚩 sensitive files by mistake and you want to get rid of them.
+      # 🚩 But don't assume deleting files from history fully erases
+      # 🚩 the risk, because someone could have cloned or forked the
+      # 🚩 repo before you deleted them...so be sure to change your
+      # 🚩 passwords and secrets..
+      #
+      # 🚩 GitHub has secret detection, you can enable on your repo
+      # 🚩 I have it enabled on mine, plus I'm using GitGuardian
+      #
+      # 🚩 If you are using Allure reports and you add --no-blob-protection
+      # 🚩 then your GitHub pages site will have a blank spot until you run more tests.
+
       - name: Git cleanup
         run: |
           git reflog expire --expire=now --all
