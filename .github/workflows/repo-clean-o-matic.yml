@@ -10,7 +10,7 @@
 # EXTRA:   ℹ️ At first, I tried git filter-repo, but had a bunch of issues to troubleshoot. So I used BFG Repo-Cleaner instead.
 # EXTRA:   ℹ️ I also tried the suggested way of cloning a mirror with git, but had issues later in the workflow.
 # EXTRA:   ℹ️ And that is why I ended up using the GitHub Marketplace Actions/Checkout with fetch-depth: 0.
-# EXTRA:   ℹ️ I think I got this all dialed in the way I want it now. Time will tell. lol
+# EXTRA:   ⭐ This is dialed-in, has been tested for a while, and works exactly like I want it to.
 
 name: The Repo Clean-O-Matic
 
