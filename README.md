@@ -10,6 +10,7 @@ This repository publishes Playwright test reports to a GitHub Pages site after e
 - BFG Repo-Cleaner is a lifesaver 🛟 when your repo grows to 1GB and will get even bigger
 - GitHub can take hours or days to update `repo.size` after cleaning with BFG
 - Race condition if multiple pull requests opened around the same time
+- Fast pushes cancel earlier deploys, so some test runs are missing from history
 - Sometimes it's just better to stick with the simpler tool (Playwright's HTML reporter)
 
 ## Setup
