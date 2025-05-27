@@ -49,6 +49,19 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
 **Updte MAY 08 2025**  
  Just thought of a workaround. I added `continue-on-error: true` to the deploy Allure report step in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
 
+## GitHub Pages Deploys Get Canceled If You Push Too Fast 🚀 ##
+If multiple builds run close together (like pushing quickly a few times in a row), GitHub cancels the earlier workflow runs for deploying. *This means some test results never make it into the report*.
+
+`❌ build`    
+The operation was canceled.  
+`❌ build`   
+Canceling since a higher priority waiting request for pages build and deployment @ live-reports exists
+pages build and deployment  
+`❌ build`  
+Canceling since a higher priority waiting request for pages build and deployment @ live-reports exists
+
+I am not looking into a fix for this.
+
 ## Issue with History Links
 
 The primary link to the report dashboard, which includes the most recent test run works fine, however Allure's history links use relative paths like `#testresult/abcd123`. If you're hosting the report in a subdirectory like `yourusername.github.io/playwright-allure-report/`, those history links break and take you to the root of your main site instead of the test result.
@@ -71,9 +84,9 @@ Unfortunately, I couldn't find any documentation on how to account for this issu
 
 ## My Thoughts
 
-This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, troubleshooting all the issues, and making sure everything worked smoothly.
+This whole investigation, setup, configuration, and troubleshooting with Allure was a big challenge. Well to be clear, the **local install** was fairly straightforward. Running it locally wasn't the problem. The real time sink was getting it into **CI/CD**, and deploying to a **GitHub Pages** site.
 
-After all that, I actually prefer the built-in **Playwright HTML reporter** 😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain. 
+After all that, I actually prefer the built-in **Playwright HTML reporter** 😹. It's way easier to set up and configure, with a lot fewer moving parts to break and maintain.
 
 I just went down this Allure rabbit hole out of curiosity and the challenge of it. Kind of like trying to solve a jigsaw puzzle on your front room table. That's exactly how it felt. The Playwright HTML reporter just feels simpler and for most CI/CD setups, that's probably all you really need anyway. You can upload that HTML report as an artifact and attach it during the run to the GitHub Actions workflow summary page.
 
