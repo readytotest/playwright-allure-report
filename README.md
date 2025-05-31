@@ -1,4 +1,4 @@
-# How I beat Allure Playwright Reports into working with GitHub Pages
+# How I Wrestled Allure Playwright Reports into Working with GitHub Pages
 
 This repository publishes Playwright test reports to a GitHub Pages site after every CI/CD run. The reports are generated using [Allure](https://allurereport.org/docs/playwright/) and the [allure-report-action](https://github.com/marketplace/actions/allure-report-with-history), then deployed with [actions-gh-pages](https://github.com/marketplace/actions/github-pages-action).
 
