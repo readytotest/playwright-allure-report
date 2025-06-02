@@ -51,7 +51,7 @@ In my case it's multiple Dependabot PRs all being opened at the same time that c
  Just thought of a workaround. I added `continue-on-error: true` to the deploy Allure report step in the YAML. Now, if it gets caught up in that race condition, it should just continue on and complete the workflow. You just won't have the Allure report for that run, which is OK since HTML reports are uploaded as an artifact to the CI runs also.
 
 ## GitHub Pages Deploys Get Canceled If You Push Too Fast 🚀 ##
-If multiple builds run close together (like pushing quickly a few times in a row), GitHub cancels the earlier workflow runs for deploying. *This means some test results never make it into the report on the GitHub Pages site*. The test runs do complete over in my main repo and you can view the results in the artifact on the run summary page that contain the built-in HTML report.
+If multiple builds run close together (like pushing quickly a few times in a row), GitHub cancels the earlier workflow runs for deploying. *This means some test results never make it into the report on the GitHub Pages site*. The test runs do complete over in my main repo and you can view the results in the artifact on the run summary page that contains the built-in HTML report.
 
 `❌ build`    
 The operation was canceled.  
