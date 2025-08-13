@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout full repo history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           ref: live-reports #If you're using the main branch for the reports, you can change this to main or just remove this line
