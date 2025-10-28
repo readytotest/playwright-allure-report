@@ -97,7 +97,7 @@ jobs:
           git push origin --force --tags
 
       - name: Upload BFG cleanup report files as artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: bfg-cleanup-report
           path: /home/runner/work/playwright-allure-report/playwright-allure-report.bfg-report/*
