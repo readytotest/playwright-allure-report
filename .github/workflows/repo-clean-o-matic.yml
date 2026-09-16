@@ -1,0 +1,139 @@
+# THIS SCRIPT WAS DESIGNED TO KEEP THE REPO SIZE SMALL THAT HOSTS THE ALLURE REPORTS
+# OTHERWISE THE REPO SIZE WILL GROW WAY TOO BIG EVEN IF YOU DELETE THE FILES
+# AT MY RATE IT WAS GROWING ABOUT 1GB EVERY TWO WEEKS, WHICH MEANS I'D HIT THE 5GB LIMIT QUICKLY
+# BECAUSE GIT KEEPS THE HISTORY OF ALL FILES EVEN IF YOU DELETE THEM (AND THEY STILL COUNT TOWARDS THE SIZE)
+
+# CAUTION: 🚨 This will rewrite the git history and remove a list of files types forever!
+# CAUTION: ⬇️ Scroll down below to see what file type extensions will be deleted.
+# WARNING: 💀 Once executed, the files are permanently deleted from the git history.
+# NOTICE!: 📌 You need to go into the repo settings/actions/general/workflow permissions/enable set read+write
+# EXTRA:   ℹ️ The token used here is the built-in GITHUB_TOKEN. Not a personal access token (PAT). So you don't need to create a new token.
+# EXTRA:   ℹ️ At first, I tried git filter-repo, but had a bunch of issues to troubleshoot. So I used BFG Repo-Cleaner instead.
+# EXTRA:   ℹ️ I also tried the suggested way of cloning a mirror with git, but had issues later in the workflow.
+# EXTRA:   ℹ️ And that is why I ended up using the GitHub Marketplace Actions/Checkout with fetch-depth: 0.
+# EXTRA:   ⭐ This is dialed-in, has been tested for a while, and works exactly like I want it to.
+
+name: The Repo Clean-O-Matic
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"  # Every Sunday at midnight UTC
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10 #I'd set a timeout in case something hangs, which I've seen happen. This could waste your GitHub Actions minutes.
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout full repo history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: live-reports #If you're using the main branch for the reports, you can change this to main or just remove this line
+          #One other thing to be aware of is, if you're using the main branch, you're gonna need to go into the repo settings
+          #and I think it's under the branch protection rules area...click that checkbox that allows force push on the branch. 
+
+      - name: Check starting repo size on GitHub
+        continue-on-error: true
+        run: |
+          size=$(curl -s "https://api.github.com/repos/${{ github.repository }}" | jq -r '.size')
+          size_mb=$(echo "scale=2; $size / 1024" | bc)
+          size_gb=$(echo "scale=3; $size / 1024 / 1024" | bc)
+          echo "Repo size before cleanup: ${size_mb} MB (or ${size_gb} GB if you prefer)"
+
+      - name: Install BFG Repo-Cleaner
+        run: |
+          curl -L -o /tmp/bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.15.0/bfg-1.15.0.jar
+
+      # Deleting files with BFG Repo-Cleaner
+      # This started out with png and webm files, but I added more file
+      # types to the list because the repo size was steadily increasing and 
+      # it got back up to 160MB! Now it's down to under 5MB.
+
+      ########### ❌❌⚠️❌❌  ATTENTION ❌❌⚠️❌❌  ###########
+      #✂️      File types to delete in git history       ✂️#
+      ########### BEGIN DELETE FILE TYPE SECTION ##########
+      - name: Delete files with BFG Repo-Cleaner
+        run: java -jar /tmp/bfg.jar --delete-files '*.{png,webm,txt,css,csv,js,json,zip,html}'
+      ############ END DELETE FILE TYPE SECTION ############
+      #Deletes all the file types NOT in the current commit#
+
+      # 🚩 OK, some notes for people using this config not
+      # 🚩 for managing Allure report size, but for someone who may
+      # 🚩 have found themselves in a situation where they accidentally
+      # 🚩 committed files they don't want in git history at all.
+      # 🚩 If you want to delete the files INCLUDING those in 
+      # 🚩 the CURRENT COMMIT, then add the --no-blob-protection flag
+      # 🚩 to the end of the command. They'll be gone for good.
+      #
+      # 🚩 I think you'd only want to do that if you committed some
+      # 🚩 sensitive files by mistake and you want to get rid of them.
+      # 🚩 But don't assume deleting files from history fully erases
+      # 🚩 the risk, because someone could have cloned or forked the
+      # 🚩 repo before you deleted them...so be sure to change your
+      # 🚩 passwords and secrets..
+      #
+      # 🚩 GitHub has secret detection, you can enable on your repo
+      # 🚩 I have it enabled on mine, plus I'm using GitGuardian
+      #
+      # 🚩 If you are using Allure reports and you add --no-blob-protection
+      # 🚩 then your GitHub pages site will have a blank spot until you run more tests.
+
+      - name: Git cleanup
+        run: |
+          git reflog expire --expire=now --all
+          git gc --prune=now --aggressive
+          git repack -a -d -f
+          git prune-packed
+
+      # Make sure you update the branch name here if you're not using "live-reports" as your branch name.
+      - name: Force push to GitHub
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin live-reports --force
+          git push origin --force --tags
+
+      - name: Upload BFG cleanup report files as artifact
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: bfg-cleanup-report
+          path: /home/runner/work/playwright-allure-report/playwright-allure-report.bfg-report/*
+          if-no-files-found: warn
+          retention-days: 7
+
+      # GitHub typically takes a while to update the repo.size, which can significantly delay testing changes to the script. 
+      # This creates a challenge during QA testing, as it's hard to tell if any issues are due to the changes you made or simply
+      # because the repo size hasn't updated yet. 
+      # It becomes even trickier when multiple changes are made, as it’s difficult to pinpoint which one actually caused the size change! 
+      # If you're tweaking the script, it's best to wait at least a full day before checking the size to avoid confusion.
+      # Hopefully this will help you avoid the headache of trying to figure out if the script is working or if it's just GitHub being slow to update. LOL
+      
+      # To avoid waiting for the repo.size update, you can clone a fresh local copy of the repository and check the history directly.
+      # After cloning the repo, run the following commands to see what .webm or .png files are still present in the history:
+      # https://git-scm.com/docs/git-rev-list
+      # For .webm files:
+      # git rev-list --objects --all | grep '\.webm$'
+      #
+      # For .png files:
+      # git rev-list --objects --all | grep '\.png$'
+      #
+      # Or both together:
+      # git rev-list --objects --all | grep -E '\.png$|\.webm$'
+
+      # One last way you can check the size of the repo and not have to wait around for the GitHub repo.size to update
+      # After you run the cleaner, just clone a new copy of the repo and run the following command: du -sh .git
+      # Or just go navigate to the repo in your file explorer and right click it and get info on macOS
+      
+      - name: Delayed update of GitHub repository size after cleanup
+        run: |
+          echo "The repository size probably won't update immediately after running this workflow."
+          echo "GitHub's backend takes time to recalculate and reflect the updated repository size."
+          echo "For smaller repositories or minor changes, the size update may happen within a few hours."
+          echo "For larger repositories or significant history rewrites, it can take up to 1-2 days"
+          echo "You can manually check it later with:"
+          echo "curl -s https://api.github.com/repos/${{ github.repository }} | jq -r '.size'"
+          echo "That'll return the size in KB. Divide by 1024 to get MB."
+        
