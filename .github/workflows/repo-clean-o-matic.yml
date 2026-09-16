@@ -89,11 +89,11 @@ jobs:
           git repack -a -d -f
           git prune-packed
 
-      # Make sure you update the branch name here if you're not using "live-reports" as your branch name.
+      # Make sure you update the branch name here if you're not using "allure-report" as your branch name.
       - name: Force push to GitHub
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git push origin live-reports --force
+          git push origin allure-report --force
           git push origin --force --tags
 
       - name: Upload BFG cleanup report files as artifact
