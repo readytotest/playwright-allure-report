@@ -1,19 +1,3 @@
-**UPDATE SEPTEMBER 15 2026**
-
-The Allure reports suddenly stopped working and I was getting this error:
-
-`xargs is not available`
-
-After a bunch of troubleshooting, recreating the `allure-report` branch, and getting the history setup back in place, it turned out the fix was simply updating:
-
-`simple-elf/allure-report-action@v1.14`
-
-to:
-
-`simple-elf/allure-report-action@v1.15`
-
-Everything is working again.
-
 # 🤼‍♂️ How I Wrestled Allure Playwright Reports into Working with GitHub Pages
 
 This repository publishes Playwright test reports to a GitHub Pages site after every CI/CD run. The reports are generated using [Allure](https://allurereport.org/docs/playwright/) and the [allure-report-action](https://github.com/marketplace/actions/allure-report-with-history), then deployed with [actions-gh-pages](https://github.com/marketplace/actions/github-pages-action).
