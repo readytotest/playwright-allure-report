@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-          ref: live-reports #If you're using the main branch for the reports, you can change this to main or just remove this line
+          ref: allure-report #If you're using the main branch for the reports, you can change this to main or just remove this line
           #One other thing to be aware of is, if you're using the main branch, you're gonna need to go into the repo settings
           #and I think it's under the branch protection rules area...click that checkbox that allows force push on the branch. 
 
