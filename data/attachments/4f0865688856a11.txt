@@ -1,3 +1,0 @@
-✅ Running weather page test run:0
-✅ Href copied to clipboard.
-✅ Completed weather page test run:0
